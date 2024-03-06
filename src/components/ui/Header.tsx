@@ -1,27 +1,16 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
+import logoImage from '../../assets/logo.png'
+
 export default function Header() {
-  const linkHoverStyles = 'duration-200 hover:opacity-80'
-
-  const linkData = [
-    {href: '/', text: 'HOME'},
-    {href: '/about-us/', text: 'ABOUT US'},
-    {href: '/faq/', text: 'FAQ'},
-  ]
-
   return (
     <header className="absolute w-screen top-10">
       <div className="flex items-center justify-between w-[75%] mx-auto">
-        <h1 className="text-3xl font-black leading-none text-custom-primary">
-          KILLA <br /> CLUB.
-        </h1>
-        <nav className="flex gap-5 text-xl font-semibold tracking-tight">
-          {linkData.map((link, index) => (
-            <Link key={index} className={linkHoverStyles} href={link.href}>
-              {link.text}
-            </Link>
-          ))}
-        </nav>
+        <div className="w-36">
+          <Image quality={100} src={logoImage} alt="" className="object-contain s-full" />
+        </div>
+        <h1 className="text-xl font-semibold tracking-tight">Socials</h1>
       </div>
     </header>
   )
