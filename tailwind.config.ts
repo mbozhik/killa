@@ -8,16 +8,13 @@ const config: Config = {
   prefix: '',
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['var(--font-opensans)', 'ui-sans-serif', 'system-ui', '-apple-system', 'Roboto', 'sans-serif'],
-      },
       fontWeight: {
         book: '450',
       },
       colors: {
         custom: {
-          gray: '#454545',
-          e4: '#E4E4E4',
+          f3: '#F3E6D6',
+          black: '#0C0C0C',
         },
       },
     },

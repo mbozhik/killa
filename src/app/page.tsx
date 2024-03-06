@@ -1,3 +1,3 @@
-export default function Home() {
-  return <h1>mural</h1>
+export default function Index() {
+  return <main>index</main>
 }
