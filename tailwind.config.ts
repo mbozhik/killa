@@ -13,8 +13,9 @@ const config: Config = {
       },
       colors: {
         custom: {
-          f3: '#F3E6D6',
           black: '#0C0C0C',
+          primary: '#275D50',
+          f3: '#F3E6D6',
         },
       },
     },

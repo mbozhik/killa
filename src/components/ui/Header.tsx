@@ -11,8 +11,8 @@ export default function Header() {
 
   return (
     <header className="absolute w-screen top-10">
-      <div className="w-[75%] mx-auto flex items-center justify-between">
-        <h1 className="text-3xl font-black leading-none">
+      <div className="flex items-center justify-between w-[75%] mx-auto">
+        <h1 className="text-3xl font-black leading-none text-custom-primary">
           KILLA <br /> CLUB.
         </h1>
         <nav className="flex gap-5 text-xl font-semibold tracking-tight">
