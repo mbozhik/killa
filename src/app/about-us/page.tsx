@@ -22,7 +22,7 @@ export default function AboutUs() {
 
   return (
     <main className="pt-20">
-      <section data-section="aboutus-main" className="grid w-screen mt-[15vh] h-auto place-items-center">
+      <section data-section="about-us-main" className="grid w-screen mt-[15vh] h-auto place-items-center">
         <div className="flex flex-col justify-center gap-10">
           <div className="flex gap-2 mx-auto mb-16 pl-28">
             {aboutContent.images.map((imageData, index) => (
