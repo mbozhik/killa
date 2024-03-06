@@ -1,11 +1,11 @@
 import Image from 'next/image'
 
-import AboutGridImage1 from '../../assets/about/1.png'
-import AboutGridImage2 from '../../assets/about/2.png'
-import AboutGridImage3 from '../../assets/about/3.png'
-import AboutGridImage4 from '../../assets/about/4.png'
+import AboutGridImage1 from '../../../assets/about/1.png'
+import AboutGridImage2 from '../../../assets/about/2.png'
+import AboutGridImage3 from '../../../assets/about/3.png'
+import AboutGridImage4 from '../../../assets/about/4.png'
 
-export default function AboutUs() {
+export default function About() {
   const aboutContent = {
     imagesStyles: 'w-[25vh] rounded-2xl border-8 border-white bg-custom-f3 hover:rotate-[0deg] hover:scale-125 duration-300',
     images: [
@@ -21,24 +21,22 @@ export default function AboutUs() {
   }
 
   return (
-    <main className="pt-20">
-      <section data-section="about-us-main" className="grid w-screen mt-[15vh] h-auto place-items-center">
-        <div className="flex flex-col justify-center gap-10">
-          <div className="flex gap-2 mx-auto mb-16 pl-28">
-            {aboutContent.images.map((imageData, index) => (
-              <Image key={index} src={imageData.image} className={`${aboutContent.imagesStyles} ${imageData.styles}`} alt={`Image ${index + 1}`} />
-            ))}
-          </div>
-
-          <h1 className="text-[125px] w-[70%] mx-auto leading-none font-black text-center text-custom-primary">{aboutContent.text.title}</h1>
-
-          <div className="w-[60%] mb-[20vh] font-medium mx-auto space-y-3 text-2xl text-justify">
-            {aboutContent.text.description.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+    <section data-section="about-us-main" className="grid w-screen mt-[15vh] h-auto place-items-center">
+      <div className="flex flex-col justify-center gap-10">
+        <div className="flex gap-2 mx-auto pl-28">
+          {aboutContent.images.map((imageData, index) => (
+            <Image key={index} src={imageData.image} className={`${aboutContent.imagesStyles} ${imageData.styles}`} alt={`Image ${index + 1}`} />
+          ))}
         </div>
-      </section>
-    </main>
+
+        <h1 className="mt-24 text-[125px] w-[70%] mx-auto leading-[0.95] font-black text-center text-custom-primary">{aboutContent.text.title}</h1>
+
+        <div className="w-[60%] font-medium mx-auto space-y-3 text-2xl text-justify">
+          {aboutContent.text.description.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
+      </div>
+    </section>
   )
 }

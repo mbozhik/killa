@@ -1,15 +1,13 @@
-import Image from 'next/image'
-
-import HeroImage from '../assets/hero.png'
+import Hero from '@/components/index/Hero'
+import About from '@/components/index/About'
+import Faq from '@/components/index/Faq'
 
 export default function Index() {
   return (
     <main>
-      <section data-section="index-hero" className="grid w-screen h-screen place-items-center">
-        <div className="-mt-7 ml-5 h-[75%]">
-          <Image quality={100} className="object-contain w-full h-full" src={HeroImage} priority alt="" />
-        </div>
-      </section>
+      <Hero />
+      <About />
+      <Faq />
     </main>
   )
 }

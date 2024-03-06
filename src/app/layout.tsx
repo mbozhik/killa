@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`text-custom-black bg-custom-f3 relative tracking-tighter ${inter.className}`}>
+      <body className={`text-custom-black bg-custom-f3 relative tracking-tighter overflow-x-hidden ${inter.className}`}>
         <Header />
         {children}
       </body>
