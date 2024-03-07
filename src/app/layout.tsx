@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 relative tracking-tighter overflow-x-hidden ${inter.className}`}>
         <Header />
         {children}

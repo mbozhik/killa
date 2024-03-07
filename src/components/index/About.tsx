@@ -21,7 +21,7 @@ export default function About() {
   }
 
   return (
-    <section data-section="about-us-main" className="grid w-screen mt-[15vh] h-auto place-items-center">
+    <section id="about" data-section="about-us-main" className="grid w-screen mt-[15vh] h-auto place-items-center">
       <div className="flex flex-col justify-center gap-10">
         <div className="flex gap-2 mx-auto pl-28">
           {aboutContent.images.map((imageData, index) => (

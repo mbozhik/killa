@@ -26,7 +26,7 @@ export default function Faq() {
   }
 
   return (
-    <section data-section="faq-main" className="grid w-screen mt-[20vh] mb-[25vh] h-auto place-items-center">
+    <section id="faq" data-section="faq-main" className="grid w-screen mt-[20vh] mb-[25vh] h-auto place-items-center">
       <div className="flex flex-col justify-center gap-5">
         <h1 className="text-[125px] leading-none font-black text-center text-custom-primary">{faqContent.text.title}</h1>
 

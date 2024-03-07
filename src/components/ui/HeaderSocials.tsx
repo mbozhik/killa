@@ -6,6 +6,8 @@ import xLogo from '../../assets/socials/x.svg'
 import instLogo from '../../assets/socials/inst.svg'
 import discordLogo from '../../assets/socials/discord.svg'
 
+import {linkHoverStyles} from './Header'
+
 export default function HeaderSocials() {
   const socialsData = [
     {title: 'Twitter', logo: xLogo, link: 'https://twitter.com/test'},
@@ -15,7 +17,7 @@ export default function HeaderSocials() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="text-xl font-semibold tracking-tight border-none outline-none">SOCIALS</DropdownMenuTrigger>
+      <DropdownMenuTrigger className={`text-xl font-semibold tracking-tight border-none outline-none ${linkHoverStyles}`}>SOCIALS</DropdownMenuTrigger>
       <DropdownMenuContent>
         {socialsData.map((social, index) => (
           <Link key={index} target="_blank" href={social.link}>
