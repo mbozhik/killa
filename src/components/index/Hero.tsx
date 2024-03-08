@@ -1,13 +1,80 @@
+'use client'
+
 import Image from 'next/image'
 
-import HeroImage from '../../assets/hero.png'
+import React, {useRef, useState} from 'react'
+import {motion} from 'framer-motion'
+
+import backgroundHeroImage from '../../assets/hero_background.png'
+import charactersHeroImage from '../../assets/hero_characters.png'
+
+const ROTATION_RANGE = 25
+const HALF_ROTATION_RANGE = ROTATION_RANGE / 2
 
 export default function Hero() {
+  const ref = useRef(null)
+
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
+
+  const handleMouseMove = (e) => {
+    if (!ref.current) return
+
+    const rect = ref.current.getBoundingClientRect()
+
+    const width = rect.width
+    const height = rect.height
+
+    const mouseX = (e.clientX - rect.left) * ROTATION_RANGE
+    const mouseY = (e.clientY - rect.top) * ROTATION_RANGE
+
+    const rY = mouseX / width - HALF_ROTATION_RANGE
+    const rX = (mouseY / height - HALF_ROTATION_RANGE) * -1
+
+    setRotateX(rX)
+    setRotateY(rY)
+  }
+
+  const handleMouseLeave = () => {
+    if (!ref.current) return
+    setRotateX(0)
+    setRotateY(0)
+  }
+
   return (
     <section id="#hero" data-section="index-hero" className="grid w-screen h-screen place-items-center">
-      <div className="-mt-7 ml-5 h-[75%]">
-        <Image quality={100} className="object-contain w-full h-full" src={HeroImage} priority alt="" />
-      </div>
+      <motion.div
+        ref={ref}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          transformStyle: 'preserve-3d',
+        }}
+        animate={{
+          rotateX,
+          rotateY,
+        }}
+        className="relative w-[70%]"
+      >
+        <Image
+          style={{
+            transform: 'translateZ(100px)',
+            transformStyle: 'preserve-3d',
+          }}
+          src={charactersHeroImage}
+          className="absolute"
+          alt=""
+        />
+        <Image
+          style={{
+            transform: 'translateZ(50px)',
+            transformStyle: 'preserve-3d',
+          }}
+          src={backgroundHeroImage}
+          className="relative z-5"
+          alt=""
+        />
+      </motion.div>
     </section>
   )
 }
