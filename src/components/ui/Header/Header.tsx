@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 
-import logoImage from '../../assets/logo.png'
+import logoImage from '../../../assets/logo.png'
 import HeaderSocials from './HeaderSocials'
 
 export const linkHoverStyles = 'duration-200 hover:opacity-80'
