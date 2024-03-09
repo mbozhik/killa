@@ -9,10 +9,16 @@ import backgroundHeroImage from '../../assets/hero_background.png'
 import charactersHeroImage from '../../assets/hero_characters.png'
 import mobileHeroImage from '../../assets/hero_mobile.png'
 
-const ROTATION_RANGE = 25
-const HALF_ROTATION_RANGE = ROTATION_RANGE / 2
+import {isMobile} from '@/lib/utils'
 
 export default function Hero() {
+  return !isMobile ? <DesktopHero /> : <MobileHero />
+}
+
+function DesktopHero() {
+  const ROTATION_RANGE = 25
+  const HALF_ROTATION_RANGE = ROTATION_RANGE / 2
+
   const ref = useRef(null)
 
   const [rotateX, setRotateX] = useState(0)
@@ -80,10 +86,12 @@ export default function Hero() {
   )
 }
 
-// function MobileHero() {
-//   return <Image src={mobileHeroImage} alt="" />
-// }
-
-// export default function Hero() {
-//   return <h1>hero</h1>
-// }
+function MobileHero() {
+  return (
+    <section id="#hero" data-section="index-hero" className="grid w-screen h-screen place-items-center">
+      <div className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]">
+        <Image className="animate-hero-mobile" src={mobileHeroImage} alt="" />
+      </div>
+    </section>
+  )
+}
