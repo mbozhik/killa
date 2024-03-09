@@ -17,8 +17,8 @@ export default function HeaderSocials() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={`text-xl font-semibold tracking-tight border-none outline-none ${linkHoverStyles}`}>SOCIALS</DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuTrigger className={`text-xl sm:text-lg font-semibold tracking-tight border-none outline-none ${linkHoverStyles}`}>SOCIALS</DropdownMenuTrigger>
+      <DropdownMenuContent className="sm:mt-1 sm:mr-2">
         {socialsData.map((social, index) => (
           <Link key={index} target="_blank" href={social.link}>
             <DropdownMenuItem className="flex gap-2">
