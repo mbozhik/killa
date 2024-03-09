@@ -13,7 +13,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="absolute w-screen top-10 sm:top-5">
+    <header className="absolute w-screen top-10 sm:top-5 z-50">
       <div className="flex sm:flex-col sm:gap-5 items-center justify-between w-[75%] sm:w-full mx-auto">
         <div className="w-36 sm:w-28">
           <Image quality={100} src={logoImage} alt="" className="object-contain s-full" />
