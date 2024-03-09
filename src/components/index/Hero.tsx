@@ -7,6 +7,7 @@ import {motion} from 'framer-motion'
 
 import backgroundHeroImage from '../../assets/hero_background.png'
 import charactersHeroImage from '../../assets/hero_characters.png'
+import mobileHeroImage from '../../assets/hero_mobile.png'
 
 const ROTATION_RANGE = 25
 const HALF_ROTATION_RANGE = ROTATION_RANGE / 2
@@ -54,7 +55,7 @@ export default function Hero() {
           rotateX,
           rotateY,
         }}
-        className="relative w-[70%]"
+        className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]"
       >
         <Image
           style={{
@@ -78,3 +79,11 @@ export default function Hero() {
     </section>
   )
 }
+
+// function MobileHero() {
+//   return <Image src={mobileHeroImage} alt="" />
+// }
+
+// export default function Hero() {
+//   return <h1>hero</h1>
+// }
