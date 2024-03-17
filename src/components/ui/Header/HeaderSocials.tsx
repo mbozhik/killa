@@ -3,7 +3,7 @@ import Link from 'next/link'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '@/components/ui/dropdown-menu'
 
 import xLogo from '../../../assets/socials/x.svg'
-import instLogo from '../../../assets/socials/inst.svg'
+// import instLogo from '../../../assets/socials/inst.svg'
 import discordLogo from '../../../assets/socials/discord.svg'
 
 import {navElemStyles} from './Header'
@@ -11,7 +11,7 @@ import {navElemStyles} from './Header'
 export default function HeaderSocials() {
   const socialsData = [
     {title: 'Twitter', logo: xLogo, link: 'https://twitter.com/test'},
-    {title: 'Instagram', logo: instLogo, link: 'https://instagram.com/test'},
+    // {title: 'Instagram', logo: instLogo, link: 'https://instagram.com/test'},
     {title: 'Discord', logo: discordLogo, link: '/discord/'},
   ]
 
