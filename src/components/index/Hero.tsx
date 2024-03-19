@@ -88,7 +88,7 @@ function DesktopHero() {
 
 function MobileHero() {
   return (
-    <section id="#hero" data-section="index-hero" className="grid w-screen h-screen place-items-center">
+    <section id="#hero" data-section="hero-index" className="grid w-screen h-screen place-items-center">
       <div className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]">
         <Image className="animate-hero-mobile" src={mobileHeroImage} alt="" />
       </div>
