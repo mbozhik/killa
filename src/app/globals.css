@@ -7,14 +7,56 @@
     transform: translateX(-50px);
     animation: move-hero 3s infinite alternate-reverse;
   }
+
+  @keyframes move-hero {
+    0% {
+      transform: translateX(-60px) rotateY(0deg);
+    }
+
+    100% {
+      transform: translateX(5px) rotateY(10deg);
+    }
+  }
 }
 
-@keyframes move-hero {
+.animate-swing-1 {
+  animation: swing-on-scroll-1 2s infinite alternate-reverse;
+}
+
+@keyframes swing-on-scroll-1 {
   0% {
-    transform: translateX(-60px) rotateY(0deg);
+    transform: rotate(0deg);
   }
 
   100% {
-    transform: translateX(5px) rotateY(10deg);
+    transform: rotate(40deg);
+  }
+}
+
+.animate-swing-2 {
+  animation: swing-on-scroll-2 2s infinite alternate-reverse;
+}
+
+@keyframes swing-on-scroll-2 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(-20deg);
+  }
+}
+
+.animate-swing-3 {
+  animation: swing-on-scroll-3 2s infinite alternate-reverse;
+}
+
+@keyframes swing-on-scroll-3 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(40deg);
   }
 }
