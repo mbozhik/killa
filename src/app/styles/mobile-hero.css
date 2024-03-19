@@ -1,0 +1,16 @@
+@media screen and (max-width: 767px) {
+  .animate-hero-mobile {
+    transform: translateX(-50px);
+    animation: move-hero 3s infinite alternate-reverse;
+  }
+}
+
+@keyframes move-hero {
+  0% {
+    transform: translateX(-60px) rotateY(0deg);
+  }
+
+  100% {
+    transform: translateX(5px) rotateY(10deg);
+  }
+}
