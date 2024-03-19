@@ -5,11 +5,11 @@ import Faq from '@/components/index/Faq'
 
 export default function Index() {
   return (
-    <main className="sm:overflow-x-hidden">
+    <>
       <Hero />
       <ScrollAnimation />
       <About />
       <Faq />
-    </main>
+    </>
   )
 }

@@ -64,6 +64,7 @@ function DesktopHero() {
         className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]"
       >
         <Image
+          priority={true}
           style={{
             transform: 'translateZ(100px)',
             transformStyle: 'preserve-3d',
@@ -73,6 +74,7 @@ function DesktopHero() {
           alt=""
         />
         <Image
+          priority={true}
           style={{
             transform: 'translateZ(50px)',
             transformStyle: 'preserve-3d',
@@ -90,7 +92,7 @@ function MobileHero() {
   return (
     <section id="#hero" data-section="hero-index" className="grid w-screen h-screen place-items-center">
       <div className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]">
-        <Image className="animate-hero-mobile" src={mobileHeroImage} alt="" />
+        <Image priority={true} className="animate-hero-mobile" src={mobileHeroImage} alt="" />
       </div>
     </section>
   )
