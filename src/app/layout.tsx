@@ -17,9 +17,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`text-custom-black bg-custom-f3 relative tracking-tighter overflow-x-hidden ${inter.className}`}>
+      <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${inter.className}`}>
         <Header />
-        {children}
+        <main className="relative tracking-tighter">{children}</main>
       </body>
     </html>
   )
