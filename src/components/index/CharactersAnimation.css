@@ -1,0 +1,58 @@
+:root {
+  --accent-color-black: #000000;
+  --accent-color-white: #ffffff;
+  --accent-color-grey: #d9dbe7;
+  --accent-color-grey-light: #f3f3f3;
+  --accent-color-red: #ff4732;
+}
+.moving-elements {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.moving-elements > div {
+  position: absolute;
+  width: max-content;
+  box-sizing: border-box;
+  /* animation: x var(--x-speed) linear infinite alternate; */
+}
+.moving-elements > .ellipsis {
+  right: 0;
+  bottom: 0;
+}
+.moving-elements > .square {
+  right: 0;
+  top: 0;
+}
+.moving-elements > .triangle {
+  left: 50%;
+  top: 50%;
+}
+.moving-elements > .octagon {
+  left: 0;
+  top: 0;
+}
+.moving-elements > .ellipsis svg path,
+.moving-elements > .triangle svg path {
+  fill: var(--accent-color-red);
+}
+.moving-elements > .square svg path,
+.moving-elements > .octagon svg path {
+  fill: var(--accent-color-white);
+}
+@media (max-width: 992px) {
+  .moving-elements > div {
+    max-width: calc(100% / 3);
+  }
+}
+.has-moving-elements {
+  overflow-x: clip;
+  /*   position: relative;
+  z-index: 2; */
+}
+.has-moving-elements + section {
+  /* 	z-index: 2; */
+}
