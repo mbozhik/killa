@@ -3,7 +3,13 @@
 import React, {useState, useEffect} from 'react'
 import {motion} from 'framer-motion'
 
-const SPEED = 100
+import ScrollImage from '../../assets/scroll_animation/2.png'
+
+const scrollContent = {
+  1: {src: ScrollImage, position: ''},
+}
+
+const SPEED = 75
 const CIRCLE_SIZE = 100
 
 export default function App() {
@@ -27,9 +33,12 @@ export default function App() {
 
   return (
     <section className="fixed -z-50 inset-0 overflow-hidden">
-      <div className="absolute">
-        <motion.div
-          className="s-24 bg-purple-500"
+      {Object.keys(scrollContent).map((scrollNumber) => (
+        <motion.img
+          key={scrollNumber}
+          src={scrollContent[scrollNumber].src.src}
+          alt={`image ${scrollNumber}`}
+          className={`s-40 absolute opacity-25`}
           animate={{x: x, y: y}}
           transition={{ease: 'linear'}}
           onAnimationComplete={() => {
@@ -50,7 +59,7 @@ export default function App() {
             setY(nextY)
           }}
         />
-      </div>
+      ))}
     </section>
   )
 }
