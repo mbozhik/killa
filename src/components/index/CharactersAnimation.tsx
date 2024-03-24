@@ -45,7 +45,7 @@ export default function App() {
 
   useMotionValueEvent(scrollY, 'change', (latest) => {
     if (latest > 1100) {
-      sectionRef.current.classList.remove('opacity-0')
+      sectionRef.current.classList.remove('invisible')
 
       setHidden(false)
     } else {
@@ -60,7 +60,7 @@ export default function App() {
       <motion.section
         ref={sectionRef}
         data-section="characters-index"
-        className="opacity-0 fixed -z-50 inset-0 overflow-hidden"
+        className="invisible fixed -z-50 inset-0 overflow-hidden"
         variants={{
           visible: {y: 0, opacity: 100},
           hidden: {y: '-100%', opacity: 0},
