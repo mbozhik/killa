@@ -1,5 +1,5 @@
 # Killa Club NFT landing page
 
 ```bash
-git clone https://github.com/mbozhik/mural.git && cd mural && pnpm i && code .
+git clone https://github.com/mbozhik/killa.git && cd killa && pnpm i && code .
 ```
