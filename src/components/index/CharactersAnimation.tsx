@@ -1,0 +1,106 @@
+'use client'
+
+import {isMobile} from '@/lib/utils'
+
+import React, {useState, useRef} from 'react'
+import {motion, useScroll, useMotionValueEvent} from 'framer-motion'
+
+import ScrollImage1 from '../../assets/characters_animation/1.png'
+import ScrollImage2 from '../../assets/characters_animation/2.png'
+import ScrollImage3 from '../../assets/characters_animation/3.png'
+import ScrollImage4 from '../../assets/characters_animation/4.png'
+import ScrollImage5 from '../../assets/characters_animation/5.png'
+import ScrollImage6 from '../../assets/characters_animation/6.png'
+import ScrollImage7 from '../../assets/characters_animation/7.png'
+import ScrollImage8 from '../../assets/characters_animation/8.png'
+import ScrollImage9 from '../../assets/characters_animation/9.png'
+import ScrollImage10 from '../../assets/characters_animation/10.png'
+import ScrollImage11 from '../../assets/characters_animation/11.png'
+import ScrollImage12 from '../../assets/characters_animation/12.png'
+import ScrollImage13 from '../../assets/characters_animation/13.png'
+
+const scrollContent = {
+  1: {src: ScrollImage1, position: {x: 0, y: 0}, speed: {x: 37.5, y: 37.5}},
+  2: {src: ScrollImage2, position: {x: 100, y: 200}, speed: {x: -50, y: -37.5}},
+  3: {src: ScrollImage3, position: {x: 300, y: 150}, speed: {x: 62.5, y: -50}},
+  4: {src: ScrollImage4, position: {x: 50, y: 300}, speed: {x: 25, y: 40}},
+  5: {src: ScrollImage5, position: {x: 200, y: 100}, speed: {x: -30, y: 60}},
+  6: {src: ScrollImage6, position: {x: 150, y: 250}, speed: {x: 40, y: -25}},
+  7: {src: ScrollImage7, position: {x: 400, y: 200}, speed: {x: 35, y: 20}},
+  8: {src: ScrollImage8, position: {x: 250, y: 350}, speed: {x: -45, y: -30}},
+  9: {src: ScrollImage9, position: {x: 350, y: 50}, speed: {x: 20, y: -35}},
+  10: {src: ScrollImage10, position: {x: 100, y: 400}, speed: {x: 50, y: 25}},
+  11: {src: ScrollImage11, position: {x: 500, y: 300}, speed: {x: -60, y: -45}},
+  12: {src: ScrollImage12, position: {x: 400, y: 100}, speed: {x: 45, y: 30}},
+  13: {src: ScrollImage13, position: {x: 50, y: 200}, speed: {x: -25, y: 50}},
+}
+
+const CIRCLE_SIZE = 100
+
+export default function App() {
+  const {scrollY} = useScroll()
+  const [hidden, setHidden] = useState(false)
+
+  const sectionRef = useRef(null)
+
+  useMotionValueEvent(scrollY, 'change', (latest) => {
+    if (latest > 1100) {
+      sectionRef.current.classList.remove('opacity-0')
+
+      setHidden(false)
+    } else {
+      setHidden(true)
+    }
+  })
+
+  const [scrollImages, setScrollImages] = useState(scrollContent)
+
+  return (
+    !isMobile && (
+      <motion.section
+        ref={sectionRef}
+        data-section="characters-index"
+        className="opacity-0 fixed -z-50 inset-0 overflow-hidden"
+        variants={{
+          visible: {y: 0, opacity: 100},
+          hidden: {y: '-100%', opacity: 0},
+        }}
+        animate={hidden ? 'hidden' : 'visible'}
+        transition={{duration: 0.75, ease: 'easeInOut'}}
+      >
+        {Object.keys(scrollImages).map((index) => (
+          <motion.div
+            key={index}
+            className="s-40 xl:s-28 absolute opacity-25"
+            animate={{x: scrollImages[index].position.x, y: scrollImages[index].position.y}}
+            transition={{ease: 'linear'}}
+            onAnimationComplete={() => {
+              setScrollImages((prevState) => {
+                const newState = {...prevState}
+                let nextX = newState[index].position.x + newState[index].speed.x
+                let nextY = newState[index].position.y + newState[index].speed.y
+
+                if (nextX >= document.documentElement.clientWidth - CIRCLE_SIZE || nextX <= 0) {
+                  nextX = Math.max(0, Math.min(nextX, document.documentElement.clientWidth - CIRCLE_SIZE))
+                  newState[index].speed.x = -newState[index].speed.x
+                }
+
+                if (nextY >= document.documentElement.clientHeight - CIRCLE_SIZE || nextY <= 0) {
+                  nextY = Math.max(0, Math.min(nextY, document.documentElement.clientHeight - CIRCLE_SIZE))
+                  newState[index].speed.y = -newState[index].speed.y
+                }
+
+                newState[index].position.x = nextX
+                newState[index].position.y = nextY
+
+                return newState
+              })
+            }}
+          >
+            <motion.img className={`${Number(index) % 2 !== 0 ? 'animate-rotate-1' : 'animate-rotate-2'}`} src={scrollImages[index].src.src} alt={`killa nft ${index}`} />
+          </motion.div>
+        ))}
+      </motion.section>
+    )
+  )
+}
