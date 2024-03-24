@@ -69,11 +69,9 @@ export default function App() {
         transition={{duration: 0.75, ease: 'easeInOut'}}
       >
         {Object.keys(scrollImages).map((index) => (
-          <motion.img
+          <motion.div
             key={index}
             className="s-40 xl:s-28 absolute opacity-25"
-            alt={`image ${index}`}
-            src={scrollImages[index].src.src}
             animate={{x: scrollImages[index].position.x, y: scrollImages[index].position.y}}
             transition={{ease: 'linear'}}
             onAnimationComplete={() => {
@@ -98,7 +96,9 @@ export default function App() {
                 return newState
               })
             }}
-          />
+          >
+            <motion.img className={`${Number(index) % 2 !== 0 ? 'animate-rotate-1' : 'animate-rotate-2'}`} src={scrollImages[index].src.src} alt={`killa nft ${index}`} />
+          </motion.div>
         ))}
       </motion.section>
     )

@@ -1,41 +1,27 @@
-.animate-swing-1 {
-  animation: swing-on-scroll-1 2s infinite alternate-reverse;
+.animate-rotate-1 {
+  animation: rotate-1 1.5s infinite alternate-reverse;
 }
 
-@keyframes swing-on-scroll-1 {
+@keyframes rotate-1 {
   0% {
     transform: rotate(0deg);
   }
 
   100% {
-    transform: rotate(40deg);
+    transform: rotate(60deg);
   }
 }
 
-.animate-swing-2 {
-  animation: swing-on-scroll-2 2s infinite alternate-reverse;
+.animate-rotate-2 {
+  animation: rotate-2 2s infinite alternate-reverse;
 }
 
-@keyframes swing-on-scroll-2 {
+@keyframes rotate-2 {
   0% {
     transform: rotate(0deg);
   }
 
   100% {
-    transform: rotate(-20deg);
-  }
-}
-
-.animate-swing-3 {
-  animation: swing-on-scroll-3 2s infinite alternate-reverse;
-}
-
-@keyframes swing-on-scroll-3 {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(30deg);
+    transform: rotate(120deg);
   }
 }
