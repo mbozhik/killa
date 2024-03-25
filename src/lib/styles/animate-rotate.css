@@ -1,3 +1,19 @@
+#characters-animation-index {
+  opacity: 0;
+  animation: show-characters 0.3s ease-in forwards;
+  animation-delay: 2s;
+}
+
+@keyframes show-characters {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .animate-rotate-1 {
   animation: rotate-1 1.5s infinite alternate-reverse;
 }
