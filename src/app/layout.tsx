@@ -7,7 +7,7 @@ const inter = Inter({subsets: ['latin']})
 
 const website = {
   title: 'Killa Club',
-  description: 'Solana&#39;s most formidable minds',
+  description: "Solana's most formidable minds.",
   keywords: 'killa nft, killa club nft, killa club, killa nft, solana, solana nft',
 
   url: 'https://killaclub.com',
