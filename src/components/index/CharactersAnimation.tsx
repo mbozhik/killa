@@ -2,8 +2,8 @@
 
 import {isMobile} from '@/lib/utils'
 
-import React, {useState, useRef} from 'react'
-import {motion, useScroll, useMotionValueEvent} from 'framer-motion'
+import React, {useState} from 'react'
+import {motion} from 'framer-motion'
 
 import ScrollImage1 from '../../assets/characters_animation/1.png'
 import ScrollImage2 from '../../assets/characters_animation/2.png'
@@ -38,36 +38,11 @@ const scrollContent = {
 const CIRCLE_SIZE = 100
 
 export default function App() {
-  const {scrollY} = useScroll()
-  const [hidden, setHidden] = useState(false)
-
-  const sectionRef = useRef(null)
-
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    if (latest > 1100) {
-      sectionRef.current.classList.remove('invisible')
-
-      setHidden(false)
-    } else {
-      setHidden(true)
-    }
-  })
-
   const [scrollImages, setScrollImages] = useState(scrollContent)
 
   return (
     !isMobile && (
-      <motion.section
-        ref={sectionRef}
-        data-section="characters-index"
-        className="invisible fixed -z-50 inset-0 overflow-hidden"
-        variants={{
-          visible: {y: 0, opacity: 100},
-          hidden: {y: '-100%', opacity: 0},
-        }}
-        animate={hidden ? 'hidden' : 'visible'}
-        transition={{duration: 0.75, ease: 'easeInOut'}}
-      >
+      <section id="characters-animation-index" className="fixed -z-50 inset-0 overflow-hidden">
         {Object.keys(scrollImages).map((index) => (
           <motion.div
             key={index}
@@ -100,7 +75,7 @@ export default function App() {
             <motion.img className={`${Number(index) % 2 !== 0 ? 'animate-rotate-1' : 'animate-rotate-2'}`} src={scrollImages[index].src.src} alt={`killa nft ${index}`} />
           </motion.div>
         ))}
-      </motion.section>
+      </section>
     )
   )
 }
