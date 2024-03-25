@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     !isMobile && (
-      <section id="characters-animation-index" className="fixed -z-50 inset-0 overflow-hidden">
+      <section data-section="index-characters" className="fixed -z-50 inset-0 overflow-hidden">
         {Object.keys(scrollImages).map((index) => (
           <motion.div
             key={index}

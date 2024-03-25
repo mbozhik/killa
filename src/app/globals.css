@@ -2,5 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '../lib/styles/blocks.css';
 @import '../lib/styles/mobile-hero.css';
 @import '../lib/styles/animate-rotate.css';
