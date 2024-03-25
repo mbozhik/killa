@@ -18,6 +18,10 @@ import ScrollImage10 from '../../assets/characters_animation/10.png'
 import ScrollImage11 from '../../assets/characters_animation/11.png'
 import ScrollImage12 from '../../assets/characters_animation/12.png'
 import ScrollImage13 from '../../assets/characters_animation/13.png'
+import ScrollImage14 from '../../assets/characters_animation/14.png'
+import ScrollImage15 from '../../assets/characters_animation/15.png'
+import ScrollImage16 from '../../assets/characters_animation/16.png'
+import ScrollImage17 from '../../assets/characters_animation/17.png'
 
 const scrollContent = {
   1: {src: ScrollImage1, position: {x: 0, y: 0}, speed: {x: 37.5, y: 37.5}},
@@ -33,6 +37,10 @@ const scrollContent = {
   11: {src: ScrollImage11, position: {x: 500, y: 300}, speed: {x: -60, y: -45}},
   12: {src: ScrollImage12, position: {x: 400, y: 100}, speed: {x: 45, y: 30}},
   13: {src: ScrollImage13, position: {x: 50, y: 200}, speed: {x: -25, y: 50}},
+  14: {src: ScrollImage14, position: {x: 300, y: 150}, speed: {x: 40, y: -25}},
+  15: {src: ScrollImage15, position: {x: 150, y: 250}, speed: {x: 20, y: -35}},
+  16: {src: ScrollImage16, position: {x: 350, y: 50}, speed: {x: 45, y: 30}},
+  17: {src: ScrollImage17, position: {x: 400, y: 100}, speed: {x: 20, y: -35}},
 }
 
 const CIRCLE_SIZE = 100
