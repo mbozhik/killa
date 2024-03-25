@@ -3,4 +3,4 @@
 @tailwind utilities;
 
 @import '../lib/styles/mobile-hero.css';
-@import '../lib/styles/animate-swing.css';
+@import '../lib/styles/animate-rotate.css';
