@@ -16,7 +16,7 @@ export default function Hero() {
 }
 
 function DesktopHero() {
-  const ROTATION_RANGE = 25
+  const ROTATION_RANGE = 30
   const HALF_ROTATION_RANGE = ROTATION_RANGE / 2
 
   const ref = useRef(null)
