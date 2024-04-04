@@ -9,7 +9,7 @@ import backgroundHeroImage from '../../assets/hero_background.png'
 import charactersHeroImage from '../../assets/hero_characters.png'
 import mobileHeroImage from '../../assets/hero_mobile.png'
 
-import {isMobile} from '@/lib/utils'
+import {isMobile} from '@bozzhik/is-mobile'
 
 export default function Hero() {
   return !isMobile ? <DesktopHero /> : <MobileHero />

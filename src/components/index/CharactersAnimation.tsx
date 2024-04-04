@@ -1,6 +1,6 @@
 'use client'
 
-import {isMobile} from '@/lib/utils'
+import {isMobile} from '@bozzhik/is-mobile'
 
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
