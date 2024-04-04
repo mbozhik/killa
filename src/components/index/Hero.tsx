@@ -9,7 +9,8 @@ import backgroundHeroImage from '../../assets/hero_background.png'
 import charactersHeroImage from '../../assets/hero_characters.png'
 import mobileHeroImage from '../../assets/hero_mobile.png'
 
-import {isMobile} from '@bozzhik/is-mobile'
+// import {isMobile} from '@bozzhik/is-mobile'
+let isMobile = true
 
 export default function Hero() {
   return !isMobile ? <DesktopHero /> : <MobileHero />
@@ -90,8 +91,8 @@ function DesktopHero() {
 
 function MobileHero() {
   return (
-    <section id="#hero" data-section="hero-index" className="grid w-screen h-screen place-items-center">
-      <div className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]">
+    <section id="#hero" data-section="hero-index" className="grid w-screen !h-[100svh] h-[100vh] place-items-center">
+      <div className="relative w-[70%] sm:w-[250%] sm:pt-20 xs:w-[200%]">
         <Image priority={true} className="animate-hero-mobile" src={mobileHeroImage} alt="" />
       </div>
     </section>
