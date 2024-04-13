@@ -6,7 +6,7 @@ import xLogo from '../../../assets/socials/x.svg'
 // import instLogo from '../../../assets/socials/inst.svg'
 import discordLogo from '../../../assets/socials/discord.svg'
 
-import {navElemStyles} from './Header'
+import {linkClasses} from './Header'
 
 export default function HeaderSocials() {
   const socialsData = [
@@ -17,7 +17,7 @@ export default function HeaderSocials() {
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className={`duration-200 border-none outline-none hover:opacity-80 ${navElemStyles}`}>SOCIALS</DropdownMenuTrigger>
+      <DropdownMenuTrigger className={`border-none outline-none ${linkClasses}`}>SOCIALS</DropdownMenuTrigger>
       <DropdownMenuContent className="sm:mt-1 sm:mr-2">
         {socialsData.map((social, index) => (
           <Link key={index} target="_blank" href={social.link}>

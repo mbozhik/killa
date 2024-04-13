@@ -1,15 +1,19 @@
 import Image from 'next/image'
 import Link from 'next/link'
+
 import HeaderSocials from './HeaderSocials'
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '@/components/ui/tooltip'
 
 import logoImage from '../../../assets/logo.png'
+import logoOpenSea from '../../../assets/socials/open_sea.svg'
 
-export const navElemStyles = 'text-xl font-medium tracking-tight sm:text-lg'
+export const linkClasses = 'text-xl font-medium tracking-tight sm:text-lg uppercase duration-200 hover:opacity-70'
 
 export default function Header() {
   const linkData = [
-    {href: '/#about', text: 'About us'},
-    {href: '/#faq', text: 'Faq'},
+    {href: '#about', text: 'About us'},
+    {href: '#faq', text: 'Faq'},
+    {href: '#', text: 'Open Sea', logo: logoOpenSea},
   ]
 
   return (
@@ -19,14 +23,33 @@ export default function Header() {
           <Image quality={100} src={logoImage} alt="" className="object-contain s-full" />
         </Link>
 
-        <nav className={`flex gap-5 sm:justify-around sm:w-[90%] ${navElemStyles}`}>
-          {linkData.map((link, index) => (
-            <Link key={index} className="uppercase duration-200 hover:opacity-80" href={link.href}>
+        <nav className="flex gap-5 sm:justify-around sm:w-[90%]">
+          {linkData.slice(0, 2).map((link, index) => (
+            <Link key={index} className={linkClasses} href={link.href}>
               {link.text}
             </Link>
           ))}
 
           <HeaderSocials />
+
+          {linkData.slice(2, 3).map((link, index) => (
+            <div className="flex gap-1.5 items-center" key={index}>
+              <Image quality={100} src={link.logo} alt="" className="object-contain s-5" />
+
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Link className={linkClasses} href={link.href}>
+                      {link.text}
+                    </Link>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Coming soon...</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            </div>
+          ))}
         </nav>
       </div>
     </header>
