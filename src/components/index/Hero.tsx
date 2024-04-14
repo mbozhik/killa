@@ -5,9 +5,9 @@ import Image from 'next/image'
 import React, {useRef, useState} from 'react'
 import {motion} from 'framer-motion'
 
-import backgroundHeroImage from '../../assets/hero_background.png'
-import charactersHeroImage from '../../assets/hero_characters.png'
-import mobileHeroImage from '../../assets/hero_mobile.png'
+import backgroundHeroImage from '%%/hero/hero_background.png'
+import charactersHeroImage from '%%/hero/hero_characters.png'
+import mobileHeroImage from '%%/hero/hero_mobile.png'
 
 import {isMobile} from '@bozzhik/is-mobile'
 

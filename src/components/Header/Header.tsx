@@ -5,7 +5,7 @@ import HeaderSocials from './HeaderSocials'
 import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '#/ui/tooltip'
 
 import logoImage from '%%/logo.png'
-import logoOpenSea from '%%/socials/open_sea.svg'
+import logoOpenSea from '%%/header/open_sea.svg'
 
 export const linkClasses = 'text-xl font-medium tracking-tight sm:text-lg uppercase duration-200 hover:opacity-70'
 

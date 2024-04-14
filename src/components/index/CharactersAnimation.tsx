@@ -5,23 +5,23 @@ import {isMobile} from '@bozzhik/is-mobile'
 import React, {useState} from 'react'
 import {motion} from 'framer-motion'
 
-import ScrollImage1 from '../../assets/characters_animation/1.png'
-import ScrollImage2 from '../../assets/characters_animation/2.png'
-import ScrollImage3 from '../../assets/characters_animation/3.png'
-import ScrollImage4 from '../../assets/characters_animation/4.png'
-import ScrollImage5 from '../../assets/characters_animation/5.png'
-import ScrollImage6 from '../../assets/characters_animation/6.png'
-import ScrollImage7 from '../../assets/characters_animation/7.png'
-import ScrollImage8 from '../../assets/characters_animation/8.png'
-import ScrollImage9 from '../../assets/characters_animation/9.png'
-import ScrollImage10 from '../../assets/characters_animation/10.png'
-import ScrollImage11 from '../../assets/characters_animation/11.png'
-import ScrollImage12 from '../../assets/characters_animation/12.png'
-import ScrollImage13 from '../../assets/characters_animation/13.png'
-import ScrollImage14 from '../../assets/characters_animation/14.png'
-import ScrollImage15 from '../../assets/characters_animation/15.png'
-import ScrollImage16 from '../../assets/characters_animation/16.png'
-import ScrollImage17 from '../../assets/characters_animation/17.png'
+import ScrollImage1 from '%%/characters_animation/1.png'
+import ScrollImage2 from '%%/characters_animation/2.png'
+import ScrollImage3 from '%%/characters_animation/3.png'
+import ScrollImage4 from '%%/characters_animation/4.png'
+import ScrollImage5 from '%%/characters_animation/5.png'
+import ScrollImage6 from '%%/characters_animation/6.png'
+import ScrollImage7 from '%%/characters_animation/7.png'
+import ScrollImage8 from '%%/characters_animation/8.png'
+import ScrollImage9 from '%%/characters_animation/9.png'
+import ScrollImage10 from '%%/characters_animation/10.png'
+import ScrollImage11 from '%%/characters_animation/11.png'
+import ScrollImage12 from '%%/characters_animation/12.png'
+import ScrollImage13 from '%%/characters_animation/13.png'
+import ScrollImage14 from '%%/characters_animation/14.png'
+import ScrollImage15 from '%%/characters_animation/15.png'
+import ScrollImage16 from '%%/characters_animation/16.png'
+import ScrollImage17 from '%%/characters_animation/17.png'
 
 const scrollContent = {
   1: {src: ScrollImage1, position: {x: 0, y: 0}, speed: {x: 52.5, y: 52.5}},
@@ -50,11 +50,11 @@ export default function App() {
 
   return (
     !isMobile && (
-      <section data-section="index-characters" className="fixed -z-50 inset-0 overflow-hidden">
+      <section data-section="index-characters" className="fixed inset-0 overflow-hidden -z-50">
         {Object.keys(scrollImages).map((index) => (
           <motion.div
             key={index}
-            className="s-40 xl:s-28 absolute opacity-25"
+            className="absolute opacity-25 s-40 xl:s-28"
             animate={{x: scrollImages[index].position.x, y: scrollImages[index].position.y}}
             transition={{ease: 'linear'}}
             onAnimationComplete={() => {

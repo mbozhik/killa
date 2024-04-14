@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from '#/ui/dropdown-menu'
 
-import xLogo from '%%/socials/x.svg'
-// import instLogo from '%%/socials/inst.svg'
-import discordLogo from '%%/socials/discord.svg'
+import xLogo from '%%/header/x.svg'
+// import instLogo from '%%/header/inst.svg'
+import discordLogo from '%%/header/discord.svg'
 
 import {linkClasses} from './Header'
 

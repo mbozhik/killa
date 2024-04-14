@@ -1,9 +1,9 @@
 import Image from 'next/image'
 
-import AboutGridImage1 from '../../assets/about/1.jpg'
-import AboutGridImage2 from '../../assets/about/2.jpg'
-import AboutGridImage3 from '../../assets/about/3.jpg'
-import AboutGridImage4 from '../../assets/about/4.jpg'
+import AboutGridImage1 from '%%/about/1.jpg'
+import AboutGridImage2 from '%%/about/2.jpg'
+import AboutGridImage3 from '%%/about/3.jpg'
+import AboutGridImage4 from '%%/about/4.jpg'
 
 export default function About() {
   const aboutContent = {
