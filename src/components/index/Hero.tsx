@@ -89,8 +89,10 @@ function DesktopHero() {
 }
 
 function MobileHero() {
+  const mobileSceenHeight = '!h-[100svh] h-[100vh]'
+
   return (
-    <section id="#hero" data-section="hero-index" className="grid w-screen !h-[100svh] h-[100vh] place-items-center">
+    <section id="#hero" data-section="hero-index" className={`grid w-screen place-items-center ${mobileSceenHeight}`}>
       <div className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]">
         <Image priority={true} className="animate-hero-mobile" src={mobileHeroImage} alt="" />
       </div>
