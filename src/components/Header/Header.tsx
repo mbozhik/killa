@@ -2,10 +2,10 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 import HeaderSocials from './HeaderSocials'
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '@/components/ui/tooltip'
+import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '#/ui/tooltip'
 
-import logoImage from '../../../assets/logo.png'
-import logoOpenSea from '../../../assets/socials/open_sea.svg'
+import logoImage from '%%/logo.png'
+import logoOpenSea from '%%/socials/open_sea.svg'
 
 export const linkClasses = 'text-xl font-medium tracking-tight sm:text-lg uppercase duration-200 hover:opacity-70'
 
