@@ -76,7 +76,7 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
         <Header />
-        <main className="relative tracking-tighter">{children}</main>
+        <main className="relative overflow-x-hidden tracking-tighter">{children}</main>
       </body>
     </html>
   )

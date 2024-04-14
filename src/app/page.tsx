@@ -10,8 +10,8 @@ export default function Index() {
       <Hero />
       <CharactersAnimation />
       <About />
-      <Faq />
       <RunningLine />
+      <Faq />
     </>
   )
 }
