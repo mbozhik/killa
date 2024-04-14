@@ -1,5 +1,7 @@
 'use client'
 
+import {isMobile} from '@bozzhik/is-mobile'
+
 import Image from 'next/image'
 import miniLogoImage from '../../assets/mini-logo.svg'
 
@@ -13,15 +15,19 @@ export default function RunningLine() {
 
   const slides = Array.from({length: slidesNumber}, (_, index) => (
     <SwiperSlide key={index}>
-      <div className="flex items-center sm:flex-col gap-7 sm:gap-3">
-        <Image src={miniLogoImage} alt="" className="object-contain s-16" />
-        <h1 className="text-5xl font-semibold text-center uppercase xl:text-4xl sm:text-xl text-custom-primary">Based on base</h1>
+      <div className="flex items-center gap-7 sm:gap-3">
+        <Image src={miniLogoImage} alt="" className="object-contain s-16 sm:s-12" />
+        <h1 className="text-5xl font-semibold uppercase xl:text-4xl sm:text-xl sm:leading-none text-custom-primary">Based on base</h1>
       </div>
     </SwiperSlide>
   ))
 
-  return (
+  return !isMobile ? (
     <Swiper className="w-full h-auto mt-[17vh]" slidesPerView={3} spaceBetween={30} speed={2000} loop={true} autoplay={{delay: 0, disableOnInteraction: false}} modules={[Autoplay]}>
+      {slides}
+    </Swiper>
+  ) : (
+    <Swiper className="w-full h-auto mt-[17vh]" slidesPerView={2} spaceBetween={70} speed={1250} loop={true} autoplay={{delay: 0, disableOnInteraction: false}} modules={[Autoplay]}>
       {slides}
     </Swiper>
   )
