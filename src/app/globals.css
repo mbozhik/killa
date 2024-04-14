@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import '../lib/styles/blocks.css';
-@import '../lib/styles/mobile-hero.css';
-@import '../lib/styles/animate-rotate.css';
-
-.swiper-wrapper {
-  -webkit-transition-timing-function: linear !important;
-  transition-timing-function: linear !important;
-}
+@import '../assets/stylesheets/animate-rotate.css';
+@import '../assets/stylesheets/blocks.css';
+@import '../assets/stylesheets/mobile-hero.css';
+@import '../assets/stylesheets/running-line.css';

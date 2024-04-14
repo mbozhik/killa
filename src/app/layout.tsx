@@ -1,7 +1,7 @@
 import type {Metadata} from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import Header from '@/components/ui/Header/Header'
+import Header from '#/Header/Header'
 
 const SuisseIntl = localFont({
   src: [

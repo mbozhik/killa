@@ -5,9 +5,9 @@ import Image from 'next/image'
 import React, {useRef, useState} from 'react'
 import {motion} from 'framer-motion'
 
-import backgroundHeroImage from '../../assets/hero_background.png'
-import charactersHeroImage from '../../assets/hero_characters.png'
-import mobileHeroImage from '../../assets/hero_mobile.png'
+import backgroundHeroImage from '%%/hero/hero_background.png'
+import charactersHeroImage from '%%/hero/hero_characters.png'
+import mobileHeroImage from '%%/hero/hero_mobile.png'
 
 import {isMobile} from '@bozzhik/is-mobile'
 
@@ -89,8 +89,10 @@ function DesktopHero() {
 }
 
 function MobileHero() {
+  const mobileSceenHeight = '!h-[100svh] h-[100vh]'
+
   return (
-    <section id="#hero" data-section="hero-index" className="grid w-screen !h-[100svh] h-[100vh] place-items-center">
+    <section id="#hero" data-section="hero-index" className={`grid w-screen place-items-center ${mobileSceenHeight}`}>
       <div className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]">
         <Image priority={true} className="animate-hero-mobile" src={mobileHeroImage} alt="" />
       </div>
