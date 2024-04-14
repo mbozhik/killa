@@ -11,9 +11,9 @@ export const linkClasses = 'text-xl font-medium tracking-tight sm:text-lg upperc
 
 export default function Header() {
   const linkData = [
-    {href: '#about', text: 'About us'},
+    {href: '#about', text: 'About'},
     {href: '#faq', text: 'Faq'},
-    {href: '#', text: 'Open Sea', logo: logoOpenSea},
+    {href: '#', text: 'OpenSea', logo: logoOpenSea},
   ]
 
   return (
