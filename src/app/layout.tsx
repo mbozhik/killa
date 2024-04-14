@@ -1,9 +1,36 @@
 import type {Metadata} from 'next'
-import {Inter} from 'next/font/google'
+import localFont from 'next/font/local'
 import './globals.css'
 import Header from '@/components/ui/Header/Header'
 
-const inter = Inter({subsets: ['latin']})
+const SuisseIntl = localFont({
+  src: [
+    {
+      path: '../assets/fonts/SuisseIntl-Light.woff2',
+      weight: '300',
+    },
+    {
+      path: '../assets/fonts/SuisseIntl-Regular.woff2',
+      weight: '400',
+    },
+    {
+      path: '../assets/fonts/SuisseIntl-Book.woff2',
+      weight: '450',
+    },
+    {
+      path: '../assets/fonts/SuisseIntl-Medium.woff2',
+      weight: '500',
+    },
+    {
+      path: '../assets/fonts/SuisseIntl-SemiBold.woff2',
+      weight: '600',
+    },
+    {
+      path: '../assets/fonts/SuisseIntl-Bold.woff2',
+      weight: '700',
+    },
+  ],
+})
 
 const website = {
   title: 'Killa Club',
@@ -47,7 +74,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${inter.className}`}>
+      <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
         <Header />
         <main className="relative tracking-tighter">{children}</main>
       </body>
