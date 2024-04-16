@@ -9,7 +9,7 @@ import Footer from '@/components/index/Footer'
 export default function Index() {
   return (
     <>
-      <Loader />
+      {process.env.NODE_ENV === 'production' && <Loader />}
       <Hero />
       <CharactersAnimation />
       <About />
