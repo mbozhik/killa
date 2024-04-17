@@ -25,3 +25,17 @@
     transform: rotate(120deg);
   }
 }
+
+.animate-rotate-base {
+  animation: rotate-base 1.5s infinite alternate-reverse;
+}
+
+@keyframes rotate-base {
+  0% {
+    transform: rotate(-10deg);
+  }
+
+  100% {
+    transform: rotate(30deg);
+  }
+}

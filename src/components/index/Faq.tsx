@@ -26,13 +26,13 @@ export default function Faq() {
   }
 
   return (
-    <section id="faq" data-section="faq-index" className="grid w-screen mt-[15vh] mb-[25vh] h-auto place-items-center">
-      <div className="flex flex-col justify-center gap-5">
+    <section id="faq" data-section="faq-index" className="grid mt-[15vh] mb-[25vh] w-[60%] sm:w-[95%] mx-auto h-auto place-items-center">
+      <div className="flex flex-col justify-center w-full gap-5">
         <h1 className="font-black leading-none text-center sm:text-left sm:ml-5 text-9xl xl:text-7xl sm:text-4xl text-custom-primary">{faqContent.text.title}</h1>
 
         <div className="text-2xl text-center sm:text-left sm:text-lg sm:ml-5 xl:text-xl xl:tracking-normal" dangerouslySetInnerHTML={{__html: faqContent.text.description}}></div>
 
-        <Accordion type="multiple" className="flex flex-col gap-3 mt-5 w-[50vw] sm:w-full">
+        <Accordion type="multiple" className="flex flex-col w-full gap-3 mx-auto mt-5">
           {faqContent.accordionData.map((item, index) => (
             <AccordionItem key={index} value={item.id}>
               <AccordionTrigger className="sm:mx-5 sm:text-lg">{item.question}</AccordionTrigger>
