@@ -31,10 +31,10 @@ export default function Loader() {
   return (
     <section data-section="LOADER" className={`absolute inset-0 z-50 grid w-screen h-screen bg-custom-f3 place-items-center duration-300 ${loaderStateClasses}`}>
       <div className="absolute inset-0 grid place-items-center">
-        <Image src={loaderImage} className="animate-custom-ping w-[25%]" alt="" />
+        <Image src={loaderImage} className="animate-custom-ping w-[25%] sm:w-[55%]" alt="" />
       </div>
 
-      <div className="absolute inset-0 grid place-items-center -z-10">
+      <div className="absolute inset-0 sm:top-[13vh] grid place-items-center sm:place-content-start -z-10">
         <RunningLine />
       </div>
     </section>
