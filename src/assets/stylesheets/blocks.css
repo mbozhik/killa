@@ -16,7 +16,7 @@
 
 [data-section='index-hero'] {
   animation: hero-ping 2s cubic-bezier(0, 0, 0.2, 1);
-  animation-delay: 3500ms;
+  animation-delay: 3150ms;
 }
 
 @keyframes hero-ping {
