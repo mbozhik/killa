@@ -10,8 +10,9 @@ import {Autoplay} from 'swiper/modules'
 
 import 'swiper/css'
 
-export default function RunningLine(classes: any = '') {
+export default function RunningLine() {
   const slidesNumber = 7
+  const className = 'mt-[15vh]'
 
   const slides = Array.from({length: slidesNumber}, (_, index) => (
     <SwiperSlide key={index}>
@@ -23,11 +24,11 @@ export default function RunningLine(classes: any = '') {
   ))
 
   return !isMobile ? (
-    <Swiper data-section="running-line-index" className={`w-full h-auto ${classes}`} slidesPerView={3} centeredSlides={true} spaceBetween={30} speed={2000} loop={true} autoplay={{delay: 0, disableOnInteraction: false}} modules={[Autoplay]}>
+    <Swiper data-section="running-line-index" className={`w-full h-auto ${className}`} slidesPerView={3} centeredSlides={true} spaceBetween={30} speed={2000} loop={true} autoplay={{delay: 0, disableOnInteraction: false}} modules={[Autoplay]}>
       {slides}
     </Swiper>
   ) : (
-    <Swiper data-section="running-line-index" className={`w-full h-auto ${classes}`} slidesPerView={2} spaceBetween={70} speed={1250} loop={true} autoplay={{delay: 0, disableOnInteraction: false}} modules={[Autoplay]}>
+    <Swiper data-section="running-line-index" className={`w-full h-auto ${className}`} slidesPerView={2} spaceBetween={70} speed={1250} loop={true} autoplay={{delay: 0, disableOnInteraction: false}} modules={[Autoplay]}>
       {slides}
     </Swiper>
   )
