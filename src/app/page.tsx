@@ -1,4 +1,4 @@
-import Loader from '@/components/index/Loader'
+import Header from '@/components/Header/Header'
 import Hero from '@/components/index/Hero'
 import CharactersAnimation from '@/components/index/CharactersAnimation'
 import About from '@/components/index/About'
@@ -9,11 +9,11 @@ import Footer from '@/components/index/Footer'
 export default function Index() {
   return (
     <>
-      {process.env.NODE_ENV === 'production' && <Loader />}
+      <Header />
       <Hero />
       <CharactersAnimation />
       <About />
-      <RunningLine />
+      <RunningLine className="mt-[15vh]" />
       <Faq />
       <Footer />
     </>
