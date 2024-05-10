@@ -17,7 +17,7 @@ export default function Header() {
   ]
 
   return (
-    <header className="absolute z-50 w-screen top-10 sm:top-5">
+    <header className="absolute z-20 w-screen top-10 sm:top-5">
       <div className="flex sm:flex-col sm:gap-5 items-center justify-between w-[75%] sm:w-full mx-auto">
         <Link href="/" className="w-36 sm:w-28">
           <Image quality={100} src={logoImage} alt="" className="object-contain s-full" />

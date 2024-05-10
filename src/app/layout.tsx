@@ -2,6 +2,8 @@ import type {Metadata} from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 
+import Loader from '@/components/index/Loader'
+
 const SuisseIntl = localFont({
   src: [
     {
@@ -74,6 +76,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
+        {process.env.NODE_ENV === 'production' && <Loader />}
         <main className="relative overflow-x-hidden tracking-tighter">{children}</main>
       </body>
     </html>
