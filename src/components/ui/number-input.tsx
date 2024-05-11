@@ -10,7 +10,7 @@ const NumberInput: React.FC<Props> = ({initialValue = 1}) => {
   const [value, setValue] = useState<number>(initialValue)
 
   const updateValue = (newValue) => setValue(Math.max(1, newValue))
-  const controlStyles = 'px-3 py-1.5 text-custom-primary text-2xl font-book'
+  const controlStyles = 'px-3 py-1.5 text-custom-primary text-2xl sm:text-xl font-book'
 
   return (
     <div className="flex items-center overflow-hidden text-lg border-2 rounded-md backdrop-blur-sm border-custom-primary">
