@@ -2,7 +2,7 @@ import type {Metadata} from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
 
-import Loader from '@/components/index/Loader'
+import Loader from '#/ui/loader'
 
 const SuisseIntl = localFont({
   src: [

@@ -1,7 +1,7 @@
 'use client'
 
 import {useState, useEffect} from 'react'
-import RunningLine from './RunningLine'
+import RunningLine from '#/index/RunningLine'
 
 export default function Loader() {
   const [opacity, setOpacity] = useState(true)
