@@ -31,7 +31,7 @@ export default function About() {
 
         <h1 className="mt-24 sm:mt-10 text-9xl xl:text-7xl sm:text-4xl w-[70%] sm:w-full sm:text-left sm:ml-5 mx-auto leading-[0.95] font-black text-center text-custom-primary">{aboutContent.text.title}</h1>
 
-        <div className="w-[60%] sm:w-[85%] sm:text-left sm:-mt-5 sm:ml-5 mx-auto space-y-3 sm:space-y-5 text-2xl xl:text-xl sm:text-lg xl:tracking-normal text-justify">
+        <div className="w-[60%] sm:w-[85%] sm:text-left sm:-mt-5 sm:ml-5 mx-auto space-y-3 sm:space-y-5 text-2xl xl:text-xl sm:text-base xl:tracking-normal text-justify">
           {aboutContent.text.description.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
           ))}
