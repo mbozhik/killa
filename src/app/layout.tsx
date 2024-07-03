@@ -35,7 +35,7 @@ const SuisseIntl = localFont({
 
 const website = {
   title: 'Killa Club',
-  description: "Solana's most formidable minds.",
+  description: "Base's most formidable minds.",
   keywords: 'killa nft, killa club nft, killa club, killa nft, solana, solana nft',
 
   url: 'https://killaclub.com',
