@@ -12,10 +12,10 @@ export default function Index() {
       <Header />
       <Hero />
       <CharactersAnimation />
-      <About />
+      {/* <About />
       <RunningLine className="mt-[15vh]" />
       <Faq />
-      <Footer />
+      <Footer /> */}
     </>
   )
 }
