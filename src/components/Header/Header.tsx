@@ -25,16 +25,16 @@ export default function Header() {
           <Image quality={100} src={logoImage} alt="" className="object-contain s-full" />
         </Link>
 
-        <nav className="flex gap-5 sm:justify-around sm:w-[90%]">
+        {/* <nav className="flex gap-5 sm:justify-around sm:w-[90%]">
           <h1 className={cn(linkClasses, 'animate-pulse')}>Coming soon..</h1>
 
-          {/* {linkData.slice(0, 2).map((link, index) => (
+          {linkData.slice(0, 2).map((link, index) => (
             <Link key={index} className={linkClasses} href={link.href}>
               {link.text}
             </Link>
-          ))} */}
-          {/* <HeaderSocials /> */}
-          {/* {linkData.slice(2, 3).map((link, index) => (
+          ))}
+          <HeaderSocials />
+          {linkData.slice(2, 3).map((link, index) => (
             <div className="flex gap-1.5 items-center" key={index}>
               <Image quality={100} src={link.logo} alt="" className="object-contain s-5" />
 
@@ -51,8 +51,8 @@ export default function Header() {
                 </Tooltip>
               </TooltipProvider>
             </div>
-          ))} */}
-        </nav>
+          ))}
+        </nav> */}
       </div>
     </header>
   )
