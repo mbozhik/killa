@@ -1,10 +1,7 @@
 import Header from '@/components/Header/Header'
 import Hero from '@/components/index/Hero'
 import CharactersAnimation from '@/components/index/CharactersAnimation'
-import About from '@/components/index/About'
-import Faq from '@/components/index/Faq'
-import RunningLine from '@/components/index/RunningLine'
-import Footer from '@/components/index/Footer'
+import Launch from '@/components/index/Launch'
 
 export default function Index() {
   return (
@@ -12,6 +9,8 @@ export default function Index() {
       <Header />
       <Hero />
       <CharactersAnimation />
+      <Launch />
+
       {/* <About />
       <RunningLine className="mt-[15vh]" />
       <Faq />

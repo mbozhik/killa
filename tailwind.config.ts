@@ -23,6 +23,7 @@ const config: Config = {
         custom: {
           black: '#0C0C0C',
           primary: '#286056',
+          blue: '#4ea1fe',
           f3: '#F3E6D6',
         },
       },
