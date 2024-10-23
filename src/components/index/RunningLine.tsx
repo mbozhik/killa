@@ -1,17 +1,12 @@
 'use client'
 
 import {isMobile} from '@bozzhik/is-mobile'
-
 import Image from 'next/image'
 import miniLogoImage from '%%/mini-logo.svg'
 
 import {Swiper, SwiperSlide} from 'swiper/react'
 import {Autoplay} from 'swiper/modules'
-
 import 'swiper/css'
-interface Props {
-  className?: string
-}
 
 const slidesNumber = 7
 const slides = Array.from({length: slidesNumber}, (_, index) => (
@@ -23,7 +18,7 @@ const slides = Array.from({length: slidesNumber}, (_, index) => (
   </SwiperSlide>
 ))
 
-export default function RunningLine({className}: Props) {
+export default function RunningLine({className}: {className?: string}) {
   const swiperProps = {
     datasection: 'running-line-index',
     className: `w-full h-auto z-50 ${className}`,

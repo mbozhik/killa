@@ -61,7 +61,7 @@ function DesktopHero() {
           rotateX,
           rotateY,
         }}
-        className="relative w-[70%] sm:w-[250%] sm:pt-24 xs:w-[200%]"
+        className="relative w-[70%] sm:w-[250%] sm:pt-[5vh] xs:w-[200%]"
       >
         <Image
           priority={true}
