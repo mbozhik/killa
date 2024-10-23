@@ -1,6 +1,7 @@
 'use client'
 
-import {isMobile} from '@bozzhik/is-mobile'
+// import {isMobile} from '@bozzhik/is-mobile'
+const isMobile = true
 import Image from 'next/image'
 import miniLogoImage from '%%/mini-logo.svg'
 
@@ -13,7 +14,7 @@ const slides = Array.from({length: slidesNumber}, (_, index) => (
   <SwiperSlide key={index}>
     <div className="flex items-center gap-7 sm:gap-3">
       <Image src={miniLogoImage} alt="" className="object-contain s-16 sm:s-12" />
-      <h1 className="text-5xl font-semibold uppercase xl:text-4xl sm:text-xl sm:leading-none text-custom-primary">Based on base</h1>
+      <h1 className="text-5xl font-semibold uppercase xl:text-4xl sm:text-xl sm:leading-none text-custom-primary">Lanunching on SUI</h1>
     </div>
   </SwiperSlide>
 ))
