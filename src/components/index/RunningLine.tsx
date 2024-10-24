@@ -14,7 +14,7 @@ const slides = Array.from({length: slidesNumber}, (_, index) => (
   <SwiperSlide key={index}>
     <div className="flex items-center gap-7 sm:gap-3">
       <Image src={miniLogoImage} alt="" className="object-contain s-16 sm:s-12" />
-      <h1 className="text-5xl font-semibold uppercase xl:text-4xl sm:text-xl sm:leading-none text-custom-primary">Lanunching on SUI</h1>
+      <h1 className="text-5xl font-semibold uppercase xl:text-4xl sm:text-xl sm:leading-none text-custom-primary">Launching on SUI</h1>
     </div>
   </SwiperSlide>
 ))
