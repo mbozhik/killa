@@ -22,7 +22,7 @@ const config: Config = {
       colors: {
         custom: {
           black: '#0C0C0C',
-          primary: '#4ea1fe',
+          primary: '#286056',
           f3: '#F3E6D6',
         },
       },
