@@ -1,7 +1,8 @@
-import type {Metadata} from 'next'
+"use client";
+
 import localFont from 'next/font/local'
 import './globals.css'
-
+import { WalletKitProvider } from "@mysten/wallet-kit";
 import Loader from '#/ui/loader'
 
 const SuisseIntl = localFont({
@@ -33,52 +34,20 @@ const SuisseIntl = localFont({
   ],
 })
 
-const website = {
-  title: 'Killa Club',
-  description: "Sui's elite circle",
-  keywords: 'killa nft, killa club nft, killa club, killa nft, solana, solana nft',
-
-  url: 'https://killaclub.com',
-  generator: 'nextjs, react, landing page',
-}
-
-export const metadata: Metadata = {
-  title: website.title,
-  description: website.description,
-  keywords: website.keywords,
-
-  metadataBase: new URL(website.url),
-  generator: website.generator,
-
-  openGraph: {
-    type: 'website',
-    url: website.url,
-    title: website.title,
-    description: website.description,
-    siteName: website.title,
-    images: `${website.url}/og.png`,
-  },
-  robots: {
-    index: true,
-    follow: true,
-    noarchive: true,
-    nosnippet: true,
-    noimageindex: true,
-    nocache: true,
-  },
-}
-
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode
-}>) {
+}) {
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
-        {/* {process.env.NODE_ENV === 'production' && <Loader />} */}
         <Loader />
-        <main className="relative overflow-x-hidden tracking-tighter">{children}</main>
+        <WalletKitProvider>
+          <main className="relative overflow-x-hidden tracking-tighter">
+            {children}
+          </main>
+        </WalletKitProvider>
       </body>
     </html>
   )
