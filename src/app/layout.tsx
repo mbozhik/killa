@@ -1,72 +1,19 @@
 import type {Metadata} from 'next'
-import localFont from 'next/font/local'
+import {SuisseIntl} from '@/app/fonts'
 import './globals.css'
 
-import Loader from '#/ui/loader'
-
-const SuisseIntl = localFont({
-  src: [
-    {
-      path: '../assets/fonts/SuisseIntl-Light.woff2',
-      weight: '300',
-    },
-    {
-      path: '../assets/fonts/SuisseIntl-Regular.woff2',
-      weight: '400',
-    },
-    {
-      path: '../assets/fonts/SuisseIntl-Book.woff2',
-      weight: '450',
-    },
-    {
-      path: '../assets/fonts/SuisseIntl-Medium.woff2',
-      weight: '500',
-    },
-    {
-      path: '../assets/fonts/SuisseIntl-SemiBold.woff2',
-      weight: '600',
-    },
-    {
-      path: '../assets/fonts/SuisseIntl-Bold.woff2',
-      weight: '700',
-    },
-  ],
-})
-
-const website = {
-  title: 'Killa Club',
-  description: "Sui's elite circle",
-  keywords: 'killa nft, killa club nft, killa club, killa nft, solana, solana nft',
-
-  url: 'https://killaclub.com',
-  generator: 'nextjs, react, landing page',
-}
-
 export const metadata: Metadata = {
-  title: website.title,
-  description: website.description,
-  keywords: website.keywords,
-
-  metadataBase: new URL(website.url),
-  generator: website.generator,
-
-  openGraph: {
-    type: 'website',
-    url: website.url,
-    title: website.title,
-    description: website.description,
-    siteName: website.title,
-    images: `${website.url}/og.png`,
+  title: {
+    template: '%s | Killa Club',
+    default: 'Killa Club',
   },
-  robots: {
-    index: true,
-    follow: true,
-    noarchive: true,
-    nosnippet: true,
-    noimageindex: true,
-    nocache: true,
-  },
+  description: "Sui's elite circle",
+  metadataBase: new URL('https://killaclub.com'),
+  keywords: 'killa nft, killa club nft, killa club, killa nft, solana, solana nft',
 }
+
+import Loader from '#/ui/loader'
+import Container from '@/components/Wrapper'
 
 export default function RootLayout({
   children,
@@ -76,9 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
-        {/* {process.env.NODE_ENV === 'production' && <Loader />} */}
         <Loader />
-        <main className="relative overflow-x-hidden tracking-tighter">{children}</main>
+
+        <Container>{children}</Container>
       </body>
     </html>
   )
