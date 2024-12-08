@@ -7,3 +7,7 @@
 @import '../assets/stylesheets/blocks.css';
 @import '../assets/stylesheets/mobile-hero.css';
 @import '../assets/stylesheets/running-line.css';
+
+.faq-link {
+  @apply text-custom-primary/70 border-b-2 border-custom-primary/70 hover:text-custom-primary duration-200;
+}
