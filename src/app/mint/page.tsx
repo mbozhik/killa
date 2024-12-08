@@ -1,21 +1,22 @@
 'use client'
 
+import {CONFIG} from '@/lib/config'
+
 import {cn} from '@/lib/utils'
-import Link from 'next/link'
-import Image from 'next/image'
+import {useState} from 'react'
 import {ConnectButton, useWalletKit} from '@mysten/wallet-kit'
 import {TransactionBlock} from '@mysten/sui.js/transactions'
-import {CONFIG} from '@/lib/config'
-import {useState} from 'react'
 
-import baseLogo from '../../assets/images/logo.png'
-import charactersAnimation from '../../assets/images/loader.gif'
+import Link from 'next/link'
+import Image from 'next/image'
+
+import baseLogo from '%%/logo.png'
+import charactersAnimation from '%%/loader.gif'
+import {Minus, Plus} from 'lucide-react'
 
 const StyledConnectButton = () => (
-  <div className="w-full flex justify-center">
-    <div className="bg-custom-primary text-white rounded-md hover:bg-custom-primary/85 transition-colors">
-      <ConnectButton />
-    </div>
+  <div className={cn('col-span-3 w-full', '[&>button]:text-lg [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300')}>
+    <ConnectButton />
   </div>
 )
 
@@ -68,7 +69,7 @@ export default function MintPage() {
   }
 
   return (
-    <section className={`grid justify-end items-center w-[70vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
+    <section className={`grid justify-end items-center w-[80vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
       <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[50%] xl:w-[65%] sm:w-full p-3 sm:py-5 sm:gap-7 bg-white/50 backdrop-blur-sm rounded-xl">
         <div className="flex flex-col justify-center h-full gap-5 pl-2 sm:pl-0">
           <Image className="w-[40%]" src={baseLogo} alt="Killa Club Logo" />
@@ -97,14 +98,14 @@ export default function MintPage() {
           <div className="space-y-3">
             <p className="text-lg">Select mint amount right now</p>
 
-            <div className="grid grid-cols-2 gap-2 sm:grid-cols-1 sm:gap-3">
-              <div className="flex items-center border-2 border-custom-primary rounded-md">
-                <button onClick={() => setMintAmount(Math.max(1, mintAmount - 1))} className="px-4 py-2 text-custom-primary hover:bg-gray-100 rounded-l-md" disabled={loading}>
-                  -
+            <div className="grid grid-cols-5 gap-2 sm:grid-cols-1 sm:gap-3">
+              <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
+                <button onClick={() => setMintAmount(Math.max(1, mintAmount - 1))} disabled={loading}>
+                  <Minus className="text-custom-primary" />
                 </button>
-                <span className="px-4 py-2 border-x-2 border-custom-primary">{mintAmount}</span>
-                <button onClick={() => setMintAmount(Math.min(CONFIG.MAX_MINT_PER_TX, mintAmount + 1))} className="px-4 py-2 text-custom-primary hover:bg-gray-100 rounded-r-md" disabled={loading}>
-                  +
+                <span className="px-1.5 text-custom-primary py-0 text-2xl font-book">{mintAmount}</span>
+                <button onClick={() => setMintAmount(Math.min(CONFIG.MAX_MINT_PER_TX, mintAmount + 1))} disabled={loading}>
+                  <Plus className="text-custom-primary" />
                 </button>
               </div>
 
