@@ -1,7 +1,7 @@
-import Header from '@/components/Header/Header'
-import Hero from '@/components/index/Hero'
-import CharactersAnimation from '@/components/index/CharactersAnimation'
-import Launch from '@/components/index/Launch'
+import Header from '#/Header/Header'
+import Hero from '#/index/Hero'
+import CharactersAnimation from '#/index/CharactersAnimation'
+import About from '#/index/About'
 
 export default function Index() {
   return (
@@ -9,6 +9,8 @@ export default function Index() {
       <Header />
       <Hero />
       <CharactersAnimation />
+
+      <About />
 
       {/* 
       <Launch />

@@ -15,8 +15,8 @@ export default function About() {
       {image: AboutGridImage4, styles: '-translate-x-1/4  rotate-[2.5deg] sm:translate-y-1/4'},
     ],
     text: {
-      title: 'ABOUT OUR NFT COLLECTION',
-      description: ['Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.', 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae.'],
+      title: 'Collection',
+      description: ["We welcome you to SUI’s most elite alliance and creative playground. The Killa Club will be home to 2,222 retro, soulful bunnies running a muck on SUI. Our goal and core vision at Killa Club is to make blockchain and NFT's fun again, while simultaneously pushing the limits of your typical NFT collection.", 'Nestled on Web3’s fastest growing blockchain, we aim to establish and build a bustling community of on-chain misfits at Killa Club. Members of the Hunter’s Circle will be at the forefront of every innovation and development across our decentralized abode on SUI - Beautiful art first - cool sh*t later.'],
     },
   }
 
@@ -29,7 +29,7 @@ export default function About() {
           ))}
         </div>
 
-        <h1 className="mt-24 sm:mt-10 text-9xl xl:text-7xl sm:text-4xl w-[70%] sm:w-full sm:text-left sm:ml-5 mx-auto leading-[0.95] font-black text-center text-custom-primary">{aboutContent.text.title}</h1>
+        <h1 className="uppercase mt-24 sm:mt-10 text-9xl xl:text-7xl sm:text-4xl w-[70%] sm:w-full sm:text-left sm:ml-5 mx-auto leading-[0.95] font-black text-center text-custom-primary">{aboutContent.text.title}</h1>
 
         <div className="w-[60%] sm:w-[85%] sm:text-left sm:-mt-5 sm:ml-5 mx-auto space-y-3 sm:space-y-5 text-2xl xl:text-xl sm:text-base xl:tracking-normal text-justify">
           {aboutContent.text.description.map((paragraph, index) => (
