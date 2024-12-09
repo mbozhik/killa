@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 
 import Loader from '#/ui/loader'
 import Container from '@/components/Wrapper'
+import YandexMetrika from '#/Analytics'
 
 export default function RootLayout({
   children,
@@ -24,8 +25,9 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
         <Loader />
-
         <Container>{children}</Container>
+
+        {process.env.NODE_ENV === 'production' && <YandexMetrika />}
       </body>
     </html>
   )
