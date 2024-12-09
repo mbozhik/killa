@@ -1,22 +1,26 @@
-import {cn} from '@/lib/utils'
-
 import Image from 'next/image'
 import Link from 'next/link'
 
-import HeaderSocials from './HeaderSocials'
-import {Tooltip, TooltipContent, TooltipProvider, TooltipTrigger} from '#/ui/tooltip'
+// import HeaderSocials from '#/Header/HeaderSocials'
 
 import logoImage from '%%/logo.png'
-import logoOpenSea from '%%/header/open_sea.svg'
+import XLogo from '%%/header/x.svg'
+import DiscordLogo from '%%/header/discord.svg'
 
 export const linkClasses = 'text-xl font-medium tracking-tight sm:text-lg uppercase duration-200 hover:opacity-70'
 
 export default function Header() {
-  const linkData = [
-    {href: '#about', text: 'About'},
-    {href: '#faq', text: 'Faq'},
-    {href: '#', text: 'OpenSea', logo: logoOpenSea},
-  ]
+  const linkData = {
+    nav: [
+      {href: '#about', text: 'Collection'},
+      {href: '#manifesto', text: 'Manifesto'},
+      {href: '#faq', text: 'Faq'},
+    ],
+    socials: [
+      {href: 'https://x.com/killaclubsui', logo: XLogo},
+      {href: 'https://discord.gg/killaclub', logo: DiscordLogo},
+    ],
+  }
 
   return (
     <header className="absolute z-20 w-screen top-10 sm:top-5">
@@ -25,34 +29,22 @@ export default function Header() {
           <Image quality={100} src={logoImage} alt="" className="object-contain s-full" />
         </Link>
 
-        {/* <nav className="flex gap-5 sm:justify-around sm:w-[90%]">
-          <h1 className={cn(linkClasses, 'animate-pulse')}>Coming soon..</h1>
-
-          {linkData.slice(0, 2).map((link, index) => (
+        <nav className="flex items-center gap-5 sm:justify-around sm:w-[90%]">
+          {linkData.nav.map((link, index) => (
             <Link key={index} className={linkClasses} href={link.href}>
               {link.text}
             </Link>
           ))}
-          <HeaderSocials />
-          {linkData.slice(2, 3).map((link, index) => (
-            <div className="flex gap-1.5 items-center" key={index}>
-              <Image quality={100} src={link.logo} alt="" className="object-contain s-5" />
+          {/* <HeaderSocials /> */}
 
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger>
-                    <Link className={linkClasses} href={link.href}>
-                      {link.text}
-                    </Link>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Coming soon...</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            </div>
-          ))}
-        </nav> */}
+          <div className="flex gap-2 items-center">
+            {linkData.socials.map((link, index) => (
+              <Link href={link.href} className="flex gap-1.5 items-center group" key={index}>
+                <Image quality={100} src={link.logo} className="group-hover:opacity-70 duration-200 object-contain s-6" alt="Socials Killa Club" />
+              </Link>
+            ))}
+          </div>
+        </nav>
       </div>
     </header>
   )
