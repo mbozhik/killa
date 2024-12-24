@@ -9,8 +9,7 @@ import {Swiper, SwiperSlide} from 'swiper/react'
 import {Autoplay} from 'swiper/modules'
 import 'swiper/css'
 
-const slidesNumber = 7
-const slides = Array.from({length: slidesNumber}, (_, index) => (
+const slides = Array.from({length: 7}, (_, index) => (
   <SwiperSlide key={index}>
     <div className="flex items-center gap-7 sm:gap-3">
       <Image src={miniLogoImage} alt="" className="object-contain s-16 sm:s-12" />
@@ -21,15 +20,17 @@ const slides = Array.from({length: slidesNumber}, (_, index) => (
 
 export default function RunningLine({className}: {className?: string}) {
   const swiperProps = {
-    datasection: 'running-line-index',
-    className: `w-full h-auto z-50 ${className}`,
+    speed: !isMobile ? 1250 : 1000,
+    slidesPerView: !isMobile ? 3 : 2,
+    spaceBetween: !isMobile ? 120 : 50,
     loop: true,
     autoplay: {delay: 0, disableOnInteraction: false},
+    centeredSlides: !isMobile,
     modules: [Autoplay],
   }
 
   return (
-    <Swiper {...swiperProps} slidesPerView={isMobile ? 2 : 3} spaceBetween={isMobile ? 70 : 10} speed={isMobile ? 1250 : 2000} centeredSlides={!isMobile}>
+    <Swiper {...swiperProps} data-section="running-line-index" className={`w-full h-auto z-50 ${className}`}>
       {slides}
     </Swiper>
   )
