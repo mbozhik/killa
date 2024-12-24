@@ -7,7 +7,7 @@ import AboutGridImage4 from '%%/about/4.jpg'
 
 export default function About() {
   const aboutContent = {
-    imagesStyles: 'w-[25vh] sm:w-[22.5vh] rounded-2xl border-8 sm:border-2 border-white bg-custom-f3 hover:rotate-[0deg] hover:scale-125 duration-300 sm:scale-100 sm:translate-x-0 sm:rotate-0',
+    imagesStyles: 'w-[14vw] sm:w-[42vw] rounded-2xl border-8 sm:border-2 border-white bg-custom-f3 hover:rotate-[0deg] hover:scale-125 duration-300 sm:scale-100 sm:translate-x-0 sm:rotate-0',
     images: [
       {image: AboutGridImage1, styles: 'scale-125 rotate-[5deg]'},
       {image: AboutGridImage2, styles: 'translate-y-1/4'},
