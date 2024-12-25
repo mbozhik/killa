@@ -28,7 +28,7 @@ export default function Faq() {
       {
         id: '2',
         question: 'When will the mint take place, and what will the mint price be?',
-        answer: 'The mint will go live on January 6, 2025. The mint price will be 14 SUI for the whitelist phase, and 18 SUI for the public phase. Follow our X account (https://x.com/killaclubsui) to stay up to date with all the details surrounding our upcoming launch!',
+        answer: 'The mint will go live on January 5, 2025. There will be 3 phases of the mint; VIP mint will be 12 SUI, Whitelist mint will be 15 SUI, and the remaining will be left for the public phase at 20 SUI. Follow our X account (https://x.com/killaclubsui) to stay up to date with all the details surrounding our upcoming launch!',
       },
       {
         id: '3',
