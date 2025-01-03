@@ -5,6 +5,7 @@ import About from '#/index/About'
 import Manifesto from '#/index/Manifesto'
 import RunningLine from '#/index/RunningLine'
 import Faq from '#/index/Faq'
+import Footer from '#/index/Footer'
 
 export default function Index() {
   return (
@@ -18,10 +19,9 @@ export default function Index() {
       <RunningLine className="mt-[15vh]" />
       <Faq />
 
-      {/* 
-      <Launch />
-      
-      <Footer /> */}
+      {/* <Launch /> */}
+
+      <Footer />
     </>
   )
 }
