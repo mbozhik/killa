@@ -10,9 +10,29 @@ import {TransactionBlock} from '@mysten/sui.js/transactions'
 import Link from 'next/link'
 import Image from 'next/image'
 
-import baseLogo from '%%/logo.png'
+import miniLogo from '%%/mini-logo.svg'
 import charactersAnimation from '%%/loader.gif'
 import {Minus, Plus} from 'lucide-react'
+
+const mintData = {
+  1: {
+    mint: 'VIP Mint',
+    price: 'Price: 12 SUI',
+    wallet: 'Maximum of 2 mints per wallet',
+  },
+  2: {
+    mint: 'Whitelist Mint',
+    price: 'Price: 14 SUI',
+    wallet: 'Max 4 mints per wallet',
+  },
+  3: {
+    mint: 'Public Mint',
+    price: 'Price: 18 SUI',
+    wallet: 'Max 10 mints per wallet',
+  },
+}
+
+const mintText = 'You have the chance to win SUI alongside your Killa Club NFT thanks to our Token-Bound mint mechanism! The more you mint, the higher your multiplier. If the Withdraw SUI button turns on, this means you have won some SUI. Good luck, Hunter’s.'
 
 const StyledConnectButton = () => (
   <div className={cn('col-span-3 w-full', '[&>button]:text-lg [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300')}>
@@ -69,22 +89,34 @@ export default function MintPage() {
   }
 
   return (
-    <section className={`grid justify-end items-center w-[80vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
-      <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[50%] xl:w-[65%] sm:w-full p-3 sm:py-5 sm:gap-7 bg-white/50 backdrop-blur-sm rounded-xl">
-        <div className="flex flex-col justify-center h-full gap-5 pl-2 sm:pl-0">
-          <Image className="w-[40%]" src={baseLogo} alt="Killa Club Logo" />
+    <section className={`grid justify-end items-center w-[85vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
+      <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[65%] xl:w-[75%] sm:w-full p-3 sm:py-5 sm:gap-7 bg-white/50 backdrop-blur-sm rounded-xl">
+        <div className="flex flex-col justify-between h-full gap-5 pl-2 sm:pl-0">
+          <Image className="self-center w-[4vw] sm:w-[10vw]" src={miniLogo} alt="Killa Club Logo" />
 
-          <div className="space-y-3 text-lg xl:text-base">
-            <p>Lorem ipsum, dolor sit amet consectetur.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam porro commodi veritatis omnis, quod?</p>
+          <div className="space-y-4">
+            <div className="space-y-2.5">
+              {Object.entries(mintData).map(([key, {mint, price, wallet}]) => (
+                <div key={key} className={`flex flex-col items-center gap-0.5 border-2 border-custom-primary rounded-md px-3 py-2 bg-custom-primary/10 ${key == '1' ? '' : 'opacity-40'}`}>
+                  <h3 className="font-semibold">
+                    Phase {key} - {mint}
+                  </h3>
+
+                  <p className="text-sm">{price}</p>
+                  <p className="text-sm">{wallet}</p>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-lg xl:text-base">{mintText}</p>
           </div>
 
-          <Link href="/" target="_blank" className={cn(buttonStyles, 'sm:w-full sm:text-center')}>
-            Learn More
+          <Link href="/" target="_blank" className={cn(buttonStyles, 'py-4 text-base font-medium self-center sm:w-full sm:text-center')}>
+            Withdraw SUI
           </Link>
         </div>
 
-        <div className="flex flex-col w-full gap-5">
+        <div className="flex flex-col w-full gap-5 justify-between h-full">
           <Image className="rounded-md" src={charactersAnimation} alt="Characters Animation" />
 
           {error && <div className="p-3 text-sm text-red-600 bg-red-100 rounded-md">{error}</div>}
@@ -96,7 +128,7 @@ export default function MintPage() {
           )}
 
           <div className="space-y-3">
-            <p className="text-lg">Select mint amount right now</p>
+            <p className="text-lg xl:text-base">Select mint amount right now</p>
 
             <div className="grid grid-cols-5 gap-2 sm:grid-cols-1 sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
@@ -118,7 +150,7 @@ export default function MintPage() {
               )}
             </div>
 
-            <div className="text-center text-sm text-gray-600">Total Cost: {((Number(CONFIG.MINT_PRICE) * mintAmount) / 1_000_000_000).toFixed(1)} SUI</div>
+            {/* <div className="text-center text-sm text-gray-600">Total Cost: {((Number(CONFIG.MINT_PRICE) * mintAmount) / 1_000_000_000).toFixed(1)} SUI</div> */}
           </div>
         </div>
       </div>
