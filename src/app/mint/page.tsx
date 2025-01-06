@@ -61,9 +61,15 @@ export default function MintPage() {
 
       const tx = new TransactionBlock()
 
+      // Instead of storing the split coin result, pass it directly
       tx.moveCall({
         target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
-        arguments: [tx.gas, tx.object(CONFIG.COLLECTION_DATA_ID), tx.pure(mintAmount), tx.object(CONFIG.CLOCK_ID)],
+        arguments: [
+          tx.gas, // Use tx.gas directly like in the working version
+          tx.object(CONFIG.COLLECTION_DATA_ID),
+          tx.pure(mintAmount),
+          tx.object(CONFIG.CLOCK_ID),
+        ],
       })
 
       tx.setGasBudget(200000000)
