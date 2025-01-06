@@ -3,5 +3,5 @@ export const CONFIG = {
   COLLECTION_DATA_ID: '0x03f82f3657c5e68422a4d6e81b95727b1bcadaabce9a455c1b82ad2dcf5db2ed', // Corresponding CD Object ID
   CLOCK_ID: '0x6',
   MINT_PRICE: BigInt(100_000_000), // 0.1 SUI
-  MAX_MINT_PER_TX: 10,
+  MAX_MINT_PER_TX: 2222,
 } as const
