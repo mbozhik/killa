@@ -30,6 +30,48 @@ export default function MintPage() {
   const customPaddingBottom = 'sm:!mb-[10svh] sm:mb-[10vh]';
   const buttonStyles = 'px-8 py-2.5 text-white sm:text-sm sm:font-normal tracking-normal duration-200 rounded-md w-fit bg-custom-primary hover:bg-custom-primary/85';
 
+  // const handleMint = async () => {
+  //   if (!currentAccount) return;
+    
+  //   try {
+  //     setLoading(true);
+  //     setError(null);
+  //     setSuccess(false);
+  
+  //     const tx = new TransactionBlock();
+      
+  //     tx.moveCall({
+  //       target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
+  //       arguments: [
+  //         tx.gas,  
+  //         tx.object(CONFIG.COLLECTION_DATA_ID),
+  //         tx.pure(mintAmount),  
+  //         tx.object(CONFIG.CLOCK_ID)
+  //       ]
+  //     });
+  
+  //     tx.setGasBudget(200000000); 
+  
+  //     const response = await signAndExecuteTransactionBlock({
+  //       transactionBlock: tx as any,
+  //       options: {
+  //         showEffects: true,
+  //         showEvents: true,
+  //       }
+  //     });
+  
+  //     console.log('Mint successful:', response);
+  //     setSuccess(true);
+  //     setError(null);
+      
+  //   } catch (err) {
+  //     console.error('Mint failed:', err);
+  //     setError(err instanceof Error ? err.message : 'Mint failed');
+  //     setSuccess(false);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
   const handleMint = async () => {
     if (!currentAccount) return;
     
@@ -40,23 +82,24 @@ export default function MintPage() {
   
       const tx = new TransactionBlock();
       
+      // Instead of storing the split coin result, pass it directly
       tx.moveCall({
         target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
         arguments: [
-          tx.gas,  
+          tx.gas,  // Use tx.gas directly like in the working version
           tx.object(CONFIG.COLLECTION_DATA_ID),
-          tx.pure(mintAmount),  
+          tx.pure(mintAmount),
           tx.object(CONFIG.CLOCK_ID)
-        ]
+        ],
       });
-  
-      tx.setGasBudget(200000000); 
+
+      tx.setGasBudget(200000000);
   
       const response = await signAndExecuteTransactionBlock({
         transactionBlock: tx as any,
-        options: {
-          showEffects: true,
-          showEvents: true,
+        options: { 
+          showEffects: true, 
+          showEvents: true 
         }
       });
   
@@ -71,7 +114,7 @@ export default function MintPage() {
     } finally {
       setLoading(false);
     }
-  };
+};
 
   return (
     <section className={`grid justify-end items-center w-[70vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
