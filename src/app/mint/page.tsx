@@ -18,17 +18,17 @@ const mintData = {
   1: {
     mint: 'VIP Mint',
     price: 'Price: 11 SUI',
-    wallet: 'Max Mint Per Walet: 2',
+    wallet: 'Max Mint Per Wallet: 2',
   },
   2: {
     mint: 'Whitelist Mint',
     price: 'Price: 14 SUI',
-    wallet: 'Max Mint Per Walet: 4',
+    wallet: 'Max Mint Per Wallet: 4',
   },
   3: {
     mint: 'Public Mint',
     price: 'Price: 18 SUI',
-    wallet: 'Max Mint Per Walet: 10',
+    wallet: 'Max Mint Per Wallet: 10',
   },
 }
 
@@ -96,35 +96,35 @@ export default function MintPage() {
 
   return (
     <section className={`grid justify-end items-center w-[85vw] xl:w-[90vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
-      <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[65%] xl:w-[70%] sm:w-full p-3 sm:py-5 sm:gap-7 bg-white/50 backdrop-blur-sm rounded-xl">
-        <div className="flex flex-col justify-between h-full pl-2 sm:gap-3 sm:pl-0">
+      <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[65%] xl:w-[70%] sm:w-full p-3 sm:py-5 sm:gap-5 bg-white/50 backdrop-blur-sm rounded-xl">
+        <div className="flex flex-col justify-between h-full pl-2 xl:gap-5 sm:gap-3 sm:pl-0">
           <Image className="self-center w-[4vw] sm:w-[10vws]" src={miniLogo} alt="Killa Club Logo" />
 
-          <div className="space-y-4">
-            <div className="space-y-2.5 sm:space-y-2">
+          <div className="space-y-4 tracking-tight">
+            <div className="space-y-2.5">
               {Object.entries(mintData).map(([key, {mint, price, wallet}]) => (
-                <div key={key} className={`flex flex-col items-center gap-0.5 border-2 border-custom-primary rounded-md px-3 py-2 bg-custom-primary/10 ${key == '1' ? '' : 'opacity-40'}`}>
-                  <h3 className="font-semibold">
+                <div key={key} className={`flex flex-col gap-0.5 xl:gap-0 items-center border-2 border-custom-primary rounded-md px-3 py-2 sm:py-3 bg-custom-primary/10 duration-300 hover:scale-[0.97] ${key == '1' ? '' : 'opacity-40'}`}>
+                  <h3 className="text-xl font-semibold xl:text-lg text-custom-primary">
                     Phase {key} - {mint}
                   </h3>
 
-                  <div className="flex flex-col items-center">
-                    <p className="text-sm">{price}</p>
-                    <p className="text-sm">{wallet}</p>
+                  <div className="flex flex-col items-center -space-y-1 text-base xl:text-sm xl:space-y-0">
+                    <p>{price}</p>
+                    <p>{wallet}</p>
                   </div>
                 </div>
               ))}
             </div>
 
-            <p className="text-base text-center leading-[1.2]">{mintText}</p>
+            <p className="text-base xl:text-sm text-center !leading-[1.2]">{mintText}</p>
           </div>
 
-          <Link href="/" target="_blank" className={cn(buttonStyles, 'py-[18px] sm:py-3.5 text-base sm:text-lg font-medium self-center sm:w-full sm:text-center')}>
+          <Link href="/" target="_blank" className={cn(buttonStyles, 'self-center w-full px-10 py-4 sm:py-3.5 !text-lg !font-medium font-sans text-center tracking-tighter')}>
             Withdraw SUI
           </Link>
         </div>
 
-        <div className="flex flex-col w-full gap-5 justify-between h-full">
+        <div className="flex flex-col justify-between w-full h-full gap-5">
           <Image className="rounded-md" src={charactersAnimation} alt="Characters Animation" />
 
           {error && <div className="p-3 text-sm text-red-600 bg-red-100 rounded-md">{error}</div>}
@@ -135,7 +135,7 @@ export default function MintPage() {
             </div>
           )}
 
-          <div className="space-y-3">
+          <div className="space-y-2">
             <p className="text-lg xl:text-base">Select mint amount right now</p>
 
             <div className="grid grid-cols-5 gap-2 sm:flex sm:flex-col sm:gap-3">
@@ -158,7 +158,7 @@ export default function MintPage() {
               )}
             </div>
 
-            {/* <div className="text-center text-sm text-gray-600">Total Cost: {((Number(CONFIG.MINT_PRICE) * mintAmount) / 1_000_000_000).toFixed(1)} SUI</div> */}
+            {/* <div className="text-sm text-center text-gray-600">Total Cost: {((Number(CONFIG.MINT_PRICE) * mintAmount) / 1_000_000_000).toFixed(1)} SUI</div> */}
           </div>
         </div>
       </div>
