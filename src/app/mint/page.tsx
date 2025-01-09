@@ -97,8 +97,11 @@ export default function MintPage() {
   return (
     <section className={`grid justify-end items-center w-[85vw] xl:w-[90vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
       <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[65%] xl:w-[70%] sm:w-full p-3 sm:py-5 sm:gap-5 bg-white/50 backdrop-blur-sm rounded-xl">
-        <div className="flex flex-col justify-between h-full pl-2 xl:gap-5 sm:gap-3 sm:pl-0">
-          <Image className="self-center w-[4vw] sm:w-[10vws]" src={miniLogo} alt="Killa Club Logo" />
+        <div className="flex flex-col justify-between h-full pl-2 pt-2 xl:gap-5 sm:gap-3 sm:pl-0 sm:pt-0">
+          <div className="flex items-center justify-between gap-3">
+            <Image className="w-[4vw] sm:w-[10vws]" src={miniLogo} alt="Killa Club Logo" />
+            <h3 className="text-5xl xl:text-4xl font-medium text-custom-primary pt-2">259</h3> {/* we need to power this counter */}
+          </div>
 
           <div className="space-y-4 tracking-tight">
             <div className="space-y-2.5">
@@ -136,7 +139,7 @@ export default function MintPage() {
           )}
 
           <div className="space-y-2">
-            <p className="text-lg xl:text-base">Select mint amount right now</p>
+            <p className="text-lg xl:text-base">0 / 2222</p>
 
             <div className="grid grid-cols-5 gap-2 sm:flex sm:flex-col sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
