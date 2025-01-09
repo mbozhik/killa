@@ -49,7 +49,7 @@ export default function MintPage() {
 
   const customHeight = 'h-[100svh] h-[100vh] sm:h-auto'
   const customPaddingBottom = 'sm:!mb-[10svh] sm:mb-[10vh]'
-  const buttonStyles = 'px-8 py-2.5 text-white sm:text-sm sm:font-normal tracking-normal duration-200 rounded-md w-fit bg-custom-primary hover:bg-custom-primary/85'
+  const buttonStyles = 'self-center w-full px-10 py-4 sm:py-3.5 text-center text-lg font-medium font-sans text-white bg-custom-primary rounded-md tracking-tighter duration-200 hover:bg-custom-primary/85'
 
   const handleMint = async () => {
     if (!currentAccount) return
@@ -119,7 +119,7 @@ export default function MintPage() {
             <p className="text-base xl:text-sm text-center !leading-[1.2]">{mintText}</p>
           </div>
 
-          <Link href="/" target="_blank" className={cn(buttonStyles, 'self-center w-full px-10 py-4 sm:py-3.5 !text-lg !font-medium font-sans text-center tracking-tighter')}>
+          <Link href="/" target="_blank" className={buttonStyles}>
             Withdraw SUI
           </Link>
         </div>
@@ -150,7 +150,7 @@ export default function MintPage() {
               </div>
 
               {currentAccount ? (
-                <button onClick={handleMint} disabled={loading} className="w-full px-8 py-2.5 text-white bg-custom-primary rounded-md hover:bg-custom-primary/85 transition-colors disabled:opacity-50">
+                <button onClick={handleMint} disabled={loading} className={cn(buttonStyles, 'disabled:opacity-50 col-span-3', '')}>
                   {loading ? 'Minting...' : 'Mint Now'}
                 </button>
               ) : (
