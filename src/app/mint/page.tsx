@@ -100,7 +100,7 @@ export default function MintPage() {
         <div className="flex flex-col justify-between h-full pl-2 pt-2 xl:gap-5 sm:gap-3 sm:pl-0 sm:pt-0">
           <div className="flex items-center justify-between gap-3">
             <Image className="w-[4vw] sm:w-[10vws]" src={miniLogo} alt="Killa Club Logo" />
-            <h3 className="text-5xl xl:text-4xl font-medium text-custom-primary pt-2">259</h3> {/* we need to power this counter */}
+            <h3 className="text-5xl xl:text-4xl font-medium text-custom-primary pt-2">259</h3> {/* make it dynamic */}
           </div>
 
           <div className="space-y-4 tracking-tight">
@@ -139,8 +139,7 @@ export default function MintPage() {
           )}
 
           <div className="space-y-2">
-            <p className="text-lg xl:text-base">0 / 2222</p>
-
+            <p className="text-lg xl:text-base">0 / 2222 minted</p> {/* make it dynamic */}
             <div className="grid grid-cols-5 gap-2 sm:flex sm:flex-col sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
                 <button onClick={() => setMintAmount(Math.max(1, mintAmount - 1))} disabled={loading}>
@@ -160,7 +159,6 @@ export default function MintPage() {
                 <StyledConnectButton />
               )}
             </div>
-
             {/* <div className="text-sm text-center text-gray-600">Total Cost: {((Number(CONFIG.MINT_PRICE) * mintAmount) / 1_000_000_000).toFixed(1)} SUI</div> */}
           </div>
         </div>
