@@ -14,25 +14,30 @@ import miniLogo from '%%/mini-logo.svg'
 import charactersAnimation from '%%/loader.gif'
 import {Minus, Plus} from 'lucide-react'
 
-const mintData = {
-  1: {
-    mint: 'VIP Mint',
-    price: 'Price: 11 SUI',
-    wallet: 'Max Mint Per Wallet: 2',
+const MINT_DATA = {
+  day: {
+    date: 'JANUARY 19',
+    time: '9PM UTC',
   },
-  2: {
-    mint: 'Whitelist Mint',
-    price: 'Price: 14 SUI',
-    wallet: 'Max Mint Per Wallet: 4',
+  schedule: {
+    1: {
+      mint: 'VIP Mint',
+      price: 'Price: 11 SUI',
+      wallet: 'Max Mint Per Wallet: 2',
+    },
+    2: {
+      mint: 'Whitelist Mint',
+      price: 'Price: 14 SUI',
+      wallet: 'Max Mint Per Wallet: 4',
+    },
+    3: {
+      mint: 'Public Mint',
+      price: 'Price: 18 SUI',
+      wallet: 'Max Mint Per Wallet: 10',
+    },
   },
-  3: {
-    mint: 'Public Mint',
-    price: 'Price: 18 SUI',
-    wallet: 'Max Mint Per Wallet: 10',
-  },
+  text: 'Phases will run for a maximum of 4 hours, or until sold out, whichever comes first. If the Withdraw SUI button turns on, this means you have won some SUI alongside your Killa. Press Withdraw SUI to initiate the claim.',
 }
-
-const mintText = 'Phases will run for a maximum of 4 hours, or until sold out, whichever comes first. If the Withdraw SUI button turns on, this means you have won some SUI alongside your Killa. Press Withdraw SUI to initiate the claim.'
 
 const StyledConnectButton = () => (
   <div className={cn('col-span-3 w-full', '[&>button]:text-lg [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300')}>
@@ -96,16 +101,20 @@ export default function MintPage() {
 
   return (
     <section className={`grid justify-end items-center w-[85vw] xl:w-[90vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}>
-      <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[65%] xl:w-[70%] sm:w-full p-3 sm:py-5 sm:gap-5 bg-white/50 backdrop-blur-sm rounded-xl">
-        <div className="flex flex-col justify-between h-full pl-2 pt-2 xl:gap-5 sm:gap-3 sm:pl-0 sm:pt-0">
-          <div className="flex items-center justify-between gap-3">
-            <Image className="w-[4vw] sm:w-[10vws]" src={miniLogo} alt="Killa Club Logo" />
-            <h3 className="text-5xl xl:text-4xl font-medium text-custom-primary pt-2">259</h3> {/* make it dynamic */}
+      <div className="justify-self-end grid grid-cols-2 sm:grid-cols-1 gap-10 items-center justify-center w-[65%] xl:w-[70%] sm:w-full p-3 sm:p-3.5 sm:pb-5 sm:gap-5 bg-white/50 backdrop-blur-sm rounded-xl">
+        <div className="flex flex-col justify-between h-full pl-2 pt-2 xl:gap-5 sm:gap-3.5 sm:pl-0 sm:pt-0">
+          <div className="flex items-center justify-between gap-3 sm:pl-2 sm:pb-1">
+            <Image className="w-[4vw] sm:w-[12vw]" src={miniLogo} alt="Killa Club Logo" />
+
+            <div className="pt-3 sm:pt-0 text-3xl xl:text-2xl sm:text-xl font-medium text-custom-primary !leading-[1.1] text-right">
+              <h3>{MINT_DATA.day.date}</h3>
+              <h3>{MINT_DATA.day.time}</h3>
+            </div>
           </div>
 
           <div className="space-y-4 tracking-tight">
             <div className="space-y-2.5">
-              {Object.entries(mintData).map(([key, {mint, price, wallet}]) => (
+              {Object.entries(MINT_DATA.schedule).map(([key, {mint, price, wallet}]) => (
                 <div key={key} className={`flex flex-col gap-0.5 xl:gap-0 items-center border-2 border-custom-primary rounded-md px-3 py-2 sm:py-3 bg-custom-primary/10 duration-300 hover:scale-[0.97] ${key == '1' ? '' : 'opacity-40'}`}>
                   <h3 className="text-xl font-semibold xl:text-lg text-custom-primary">
                     Phase {key} - {mint}
@@ -119,7 +128,7 @@ export default function MintPage() {
               ))}
             </div>
 
-            <p className="text-base xl:text-sm text-center !leading-[1.2]">{mintText}</p>
+            <p className="text-base xl:text-sm text-center !leading-[1.2]">{MINT_DATA.text}</p>
           </div>
 
           <Link href="/" target="_blank" className={buttonStyles}>

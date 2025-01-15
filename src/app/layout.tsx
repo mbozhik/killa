@@ -24,7 +24,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body className={`text-custom-black bg-custom-f3 overflow-x-hidden ${SuisseIntl.className}`}>
-        <Loader />
+        {process.env.NODE_ENV === 'production' && <Loader />}
         <Container>{children}</Container>
 
         {process.env.NODE_ENV === 'production' && <YandexMetrika />}
