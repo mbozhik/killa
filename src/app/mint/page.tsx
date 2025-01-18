@@ -7,7 +7,6 @@ import { useState } from "react";
 import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 
-import Link from "next/link";
 import Image from "next/image";
 
 import miniLogo from "%%/mini-logo.svg";
@@ -43,8 +42,8 @@ const MINT_DATA = {
 const StyledConnectButton = () => (
   <div
     className={cn(
-      "col-span-3 w-full",
-      "[&>button]:text-lg [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300"
+      "col-span-3  w-full items-center flex justify-end mt-2",
+      "[&>button]:text-lg  [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300"
     )}
   >
     <ConnectButton />
@@ -155,11 +154,7 @@ export default function MintPage() {
           </div>
 
           <button
-            className={cn(
-              buttonStyles,
-              "disabled:opacity-50 col-span-3",
-              ""
-            )}
+            className={cn(buttonStyles, "disabled:opacity-50 col-span-3", "")}
             disabled={true}
           >
             Withdraw SUI
@@ -186,9 +181,9 @@ export default function MintPage() {
           )}
 
           <div className="space-y-2">
-            <p className="text-lg xl:text-base">0 / 2222 minted</p>{" "}
+            <p className="text-lg xl:text-base">0 / 2222 minted</p>
             {/* make it dynamic */}
-            <div className="grid grid-cols-5 gap-2 sm:flex sm:flex-col sm:gap-3">
+            <div className="grid grid-cols-1  gap-2 sm:flex sm:flex-col sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
                 <button
                   onClick={() => setMintAmount(Math.max(1, mintAmount - 1))}
@@ -212,30 +207,36 @@ export default function MintPage() {
               </div>
 
               {isConnected && whitelist.includes(currentAccount?.address) ? (
-                <button
-                  onClick={() => {}}
-                  disabled={loading}
-                  className={cn(
-                    buttonStyles,
-                    "disabled:opacity-50 col-span-3",
-                    ""
-                  )}
+                <div
+                  className={cn("flex flex-col items-center justify-center")}
                 >
-                  Eligible for whitelisted phases
-                </button>
+                  <button
+                    onClick={() => {}}
+                    disabled={loading}
+                    className={cn(buttonStyles, "disabled:opacity-50 ", "")}
+                  >
+                    Eligible for whitelisted phases
+                  </button>
+                  <StyledConnectButton />
+                </div>
               ) : isConnected &&
                 !whitelist.includes(currentAccount?.address) ? (
-                <button
-                  onClick={() => {}}
-                  disabled={false}
-                  className={cn(
-                    buttonStyles,
-                    "disabled:opacity-50 col-span-3 bg-red-600 hover:bg-red-600",
-                    ""
-                  )}
+                <div
+                  className={cn("flex flex-col items-center justify-center")}
                 >
-                  Not eligible for whitelisted phases
-                </button>
+                  <button
+                    onClick={() => {}}
+                    disabled={false}
+                    className={cn(
+                      buttonStyles,
+                      "disabled:opacity-50 col-span-3 bg-red-600 hover:bg-red-600",
+                      ""
+                    )}
+                  >
+                    Not eligible for whitelisted phases
+                  </button>
+                  <StyledConnectButton />
+                </div>
               ) : (
                 <StyledConnectButton />
               )}
