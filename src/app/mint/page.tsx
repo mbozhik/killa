@@ -51,13 +51,13 @@ const StyledConnectButton = () => (
   </div>
 );
 
-
 export default function MintPage() {
   const [mintAmount, setMintAmount] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
-  const { currentAccount, signAndExecuteTransactionBlock, isConnected } = useWalletKit();
+  const { currentAccount, signAndExecuteTransactionBlock, isConnected } =
+    useWalletKit();
 
   const customHeight = "h-[100svh] h-[100vh] sm:h-auto";
   const customPaddingBottom = "sm:!mb-[10svh] sm:mb-[10vh]";
@@ -76,7 +76,7 @@ export default function MintPage() {
 
       // Instead of storing the split coin result, pass it directly
       tx.moveCall({
-        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
+        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple_whitelist`,
         arguments: [
           tx.gas, // Use tx.gas directly like in the working version
           tx.object(CONFIG.COLLECTION_DATA_ID),
@@ -154,9 +154,16 @@ export default function MintPage() {
             </p>
           </div>
 
-          <Link href="/" target="_blank" className={buttonStyles}>
+          <button
+            className={cn(
+              buttonStyles,
+              "disabled:opacity-50 col-span-3",
+              ""
+            )}
+            disabled={true}
+          >
             Withdraw SUI
-          </Link>
+          </button>
         </div>
 
         <div className="flex flex-col justify-between w-full h-full gap-5">
@@ -206,7 +213,7 @@ export default function MintPage() {
 
               {isConnected && whitelist.includes(currentAccount?.address) ? (
                 <button
-                  onClick={handleMint}
+                  onClick={() => {}}
                   disabled={loading}
                   className={cn(
                     buttonStyles,
@@ -214,21 +221,20 @@ export default function MintPage() {
                     ""
                   )}
                 >
-                  {/* {loading ? 'Minting...' : 'Mint Now'} */}
-                  Eligible
+                  Eligible for whitelisted phases
                 </button>
-              ) : isConnected && !whitelist.includes(currentAccount?.address) ? (
+              ) : isConnected &&
+                !whitelist.includes(currentAccount?.address) ? (
                 <button
-                  onClick={handleMint}
-                  disabled={loading}
+                  onClick={() => {}}
+                  disabled={false}
                   className={cn(
                     buttonStyles,
-                    "disabled:opacity-50 col-span-3",
+                    "disabled:opacity-50 col-span-3 bg-red-600 hover:bg-red-600",
                     ""
                   )}
                 >
-                  {/* {loading ? 'Minting...' : 'Mint Now'} */}
-                  Not Eligible
+                  Not eligible for whitelisted phases
                 </button>
               ) : (
                 <StyledConnectButton />
