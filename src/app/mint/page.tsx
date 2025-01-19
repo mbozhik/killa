@@ -8,6 +8,8 @@ import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 
 import Image from "next/image";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+
 
 import miniLogo from "%%/mini-logo.svg";
 import charactersAnimation from "%%/loader.gif";
@@ -183,12 +185,17 @@ export default function MintPage() {
             </p>
           </div>
 
-          <button
-            className={cn(buttonStyles, "disabled:opacity-50 col-span-3", "")}
-            disabled={true}
-          >
-            Withdraw SUI
-          </button>
+          <Dialog>
+            <DialogTrigger>
+              <button className={cn(buttonStyles, 'disabled:opacity-50 col-span-3', '')}>Withdraw SUI</button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Modal window</DialogTitle>
+                <DialogDescription>Some text about something</DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="flex flex-col justify-between w-full h-full gap-5">
