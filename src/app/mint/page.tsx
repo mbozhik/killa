@@ -479,13 +479,13 @@ export default function MintPage() {
                   className={cn("flex flex-col items-center justify-center")}
                 >
                   <button
-                    onClick={handleMintWhitelist}
+                    // onClick={handleMintWhitelist}
                     className={cn(buttonStyles, "disabled:opacity-50 ", "")}
                   >
                     Eligible for whitelisted phases
                   </button>
                   <button
-                    onClick={() => {}}
+                    onClick={handleMintWhitelist}
                     className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
                   >
                     Mint
