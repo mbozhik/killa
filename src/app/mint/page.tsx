@@ -124,7 +124,18 @@ export default function MintPage() {
 
       console.log("Mint successful:", response);
 
-      if (response.effects.status.status !== "failure") {
+
+      await Promise.all([new Promise(resolve => setTimeout(resolve, 2000))]);
+
+      const confirmed = await client.getTransactionBlock({
+        digest: response.digest,
+        options: {
+          showEffects: true,
+        },
+      });
+
+
+      if (confirmed.effects.status.status !== "failure") {
         setSuccess(true);
         setError(null);
       } else {
@@ -177,9 +188,16 @@ export default function MintPage() {
         },
       });
 
-      console.log("Mint successful:", response);
+      await Promise.all([new Promise(resolve => setTimeout(resolve, 2000))]);
 
-      if (response.effects.status.status !== "failure") {
+      const confirmed = await client.getTransactionBlock({
+        digest: response.digest,
+        options: {
+          showEffects: true,
+        },
+      });
+
+      if (confirmed.effects.status.status !== "failure") {
         setSuccess(true);
         setError(null);
       } else {
@@ -269,7 +287,7 @@ export default function MintPage() {
           ),
           tx.object(CONFIG.COLLECTION_DATA_ID),
           tx.gas, // Use tx.gas directly like in the working version
-          tx.pure('20000000000'),
+          tx.pure("20000000000"),
         ],
       });
 
@@ -318,7 +336,7 @@ export default function MintPage() {
           tx.object(
             "0xa38f626c6d954c7716b9e6de4e4f71d6bbac32d7077461b1cde677485c397fb7"
           ),
-          tx.pure('1000000000'),
+          tx.pure("1000000000"),
         ],
       });
 
