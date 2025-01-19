@@ -3,7 +3,7 @@
 import { CONFIG } from "@/lib/config";
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 
@@ -13,6 +13,8 @@ import miniLogo from "%%/mini-logo.svg";
 import charactersAnimation from "%%/loader.gif";
 import { Minus, Plus } from "lucide-react";
 import { whitelist } from "@/lib/constants";
+
+import { getFullnodeUrl, SuiClient } from "@mysten/sui/client";
 
 const MINT_DATA = {
   day: {
@@ -55,13 +57,35 @@ export default function MintPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
+  const [mintedTokens, setMintedTokens] = useState(0);
   const { currentAccount, signAndExecuteTransactionBlock, isConnected } =
     useWalletKit();
+
+  const client = new SuiClient({ url: getFullnodeUrl("devnet") });
 
   const customHeight = "h-[100svh] h-[100vh] sm:h-auto";
   const customPaddingBottom = "sm:!mb-[10svh] sm:mb-[10vh]";
   const buttonStyles =
     "self-center w-full px-10 py-4 sm:py-3.5 text-center text-lg font-medium font-sans text-white bg-custom-primary rounded-md tracking-tighter duration-200 hover:bg-custom-primary/85";
+
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      const {
+        data: { content },
+      }: any = await client.getObject({
+        id: CONFIG.COLLECTION_DATA_ID,
+        options: {
+          showContent: true,
+        },
+      });
+
+      if (!content.fields) return setMintedTokens(0);
+
+      // return setMintedTokens(content.fields.total_minted);
+    }, 2000);
+
+    return () => clearInterval(interval); // Limpa o intervalo na desmontagem
+  }, []);
 
   const handleMint = async () => {
     if (!currentAccount) return;
@@ -75,7 +99,7 @@ export default function MintPage() {
 
       // Instead of storing the split coin result, pass it directly
       tx.moveCall({
-        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple_whitelist`,
+        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
         arguments: [
           tx.gas, // Use tx.gas directly like in the working version
           tx.object(CONFIG.COLLECTION_DATA_ID),
@@ -95,8 +119,14 @@ export default function MintPage() {
       });
 
       console.log("Mint successful:", response);
-      setSuccess(true);
-      setError(null);
+
+      if (response.effects.status.status !== "failure") {
+        setSuccess(true);
+        setError(null);
+      } else {
+        setError("Mint failed");
+        setSuccess(false);
+      }
     } catch (err) {
       console.error("Mint failed:", err);
       setError(err instanceof Error ? err.message : "Mint failed");
@@ -181,7 +211,7 @@ export default function MintPage() {
           )}
 
           <div className="space-y-2">
-            <p className="text-lg xl:text-base">0 / 2222 minted</p>
+            <p className="text-lg xl:text-base">{mintedTokens} / 2222 minted</p>
             {/* make it dynamic */}
             <div className="grid grid-cols-1  gap-2 sm:flex sm:flex-col sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
@@ -211,8 +241,7 @@ export default function MintPage() {
                   className={cn("flex flex-col items-center justify-center")}
                 >
                   <button
-                    onClick={() => {}}
-                    disabled={loading}
+                    onClick={handleMint}
                     className={cn(buttonStyles, "disabled:opacity-50 ", "")}
                   >
                     Eligible for whitelisted phases
