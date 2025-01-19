@@ -34,7 +34,7 @@ const MINT_DATA = {
       mint: "Whitelist Mint",
       price: "Price: 14 SUI",
       wallet: "Max Mint Per Wallet: 4",
-      startDate: 1737331200000,
+      startDate: 1737320400000,
     },
     3: {
       mint: "Public Mint",
