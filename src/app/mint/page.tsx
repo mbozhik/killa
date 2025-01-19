@@ -449,7 +449,7 @@ export default function MintPage() {
           )}
 
           <div className="space-y-2">
-            <p className="text-lg xl:text-base">{mintedTokens} / 2222 minted</p>
+            <p className="text-lg xl:text-base">{mintedTokens <= 2222 && mintedTokens} / 2222 minted</p>
             {/* make it dynamic */}
             <div className="grid grid-cols-1  gap-2 sm:flex sm:flex-col sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
