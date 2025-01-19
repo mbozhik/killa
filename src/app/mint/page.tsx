@@ -3,7 +3,7 @@
 import { CONFIG } from "@/lib/config";
 
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 
@@ -15,6 +15,8 @@ import { Minus, Plus } from "lucide-react";
 import { whitelist } from "@/lib/constants";
 
 import { getFullnodeUrl, SuiClient } from "@mysten/sui/client";
+import { vip } from "@/lib/vip";
+import { wl } from "@/lib/wl";
 
 const MINT_DATA = {
   day: {
@@ -26,16 +28,19 @@ const MINT_DATA = {
       mint: "VIP Mint",
       price: "Price: 11 SUI",
       wallet: "Max Mint Per Wallet: 2",
+      startDate: 1737320400000,
     },
     2: {
       mint: "Whitelist Mint",
       price: "Price: 14 SUI",
       wallet: "Max Mint Per Wallet: 4",
+      startDate: 1737331200000,
     },
     3: {
       mint: "Public Mint",
       price: "Price: 18 SUI",
       wallet: "Max Mint Per Wallet: 10",
+      startDate: 1737345600000,
     },
   },
   text: "Phases will run for a maximum of 4 hours, or until sold out, whichever comes first. If the Withdraw SUI button turns on, this means you have won some SUI alongside your Killa. Press Withdraw SUI to initiate the claim.",
@@ -81,14 +86,123 @@ export default function MintPage() {
 
       if (!content.fields) return setMintedTokens(0);
 
-      // return setMintedTokens(content.fields.total_minted);
+      return setMintedTokens(content.fields.total_minted);
     }, 2000);
 
     return () => clearInterval(interval); // Limpa o intervalo na desmontagem
   }, []);
 
-  const handleMint = async () => {
+  const handleMint = useCallback(async () => {
     if (!currentAccount) return;
+
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(false);
+
+      const tx = new TransactionBlock();
+
+      tx.moveCall({
+        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
+        arguments: [
+          tx.gas, // Use tx.gas directly like in the working version
+          tx.object(CONFIG.COLLECTION_DATA_ID),
+          tx.pure(mintAmount),
+          tx.object(CONFIG.CLOCK_ID),
+        ],
+      });
+
+      tx.setGasBudget(200000000);
+
+      const response = await signAndExecuteTransactionBlock({
+        transactionBlock: tx as any,
+        options: {
+          showEffects: true,
+          showEvents: true,
+        },
+      });
+
+      console.log("Mint successful:", response);
+
+      if (response.effects.status.status !== "failure") {
+        setSuccess(true);
+        setError(null);
+      } else {
+        setError("Mint failed");
+        setSuccess(false);
+      }
+    } catch (err) {
+      console.error("Mint failed:", err);
+      setError(err instanceof Error ? err.message : "Mint failed");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentAccount, mintAmount]);
+
+  const handleVip = useCallback(async () => {
+    if (!currentAccount) return;
+
+    if (!vip.includes(currentAccount.address)) {
+      setError("Not eligible for vip phases");
+      setSuccess(false);
+      return;
+    }
+
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(false);
+
+      const tx = new TransactionBlock();
+
+      // Instead of storing the split coin result, pass it directly
+      tx.moveCall({
+        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple_vip`,
+        arguments: [
+          tx.gas, // Use tx.gas directly like in the working version
+          tx.object(CONFIG.COLLECTION_DATA_ID),
+          tx.pure(mintAmount),
+          tx.object(CONFIG.CLOCK_ID),
+        ],
+      });
+
+      tx.setGasBudget(200000000);
+
+      const response = await signAndExecuteTransactionBlock({
+        transactionBlock: tx as any,
+        options: {
+          showEffects: true,
+          showEvents: true,
+        },
+      });
+
+      console.log("Mint successful:", response);
+
+      if (response.effects.status.status !== "failure") {
+        setSuccess(true);
+        setError(null);
+      } else {
+        setError("Mint failed");
+        setSuccess(false);
+      }
+    } catch (err) {
+      console.error("Mint failed:", err);
+      setError(err instanceof Error ? err.message : "Mint failed");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentAccount, mintAmount]);
+
+  const handleMintWhitelist = useCallback(async () => {
+    if (!currentAccount) return;
+
+    if (!wl.includes(currentAccount.address)) {
+      setError("Not eligible for whitelisted phases");
+      setSuccess(false);
+      return;
+    }
 
     try {
       setLoading(true);
@@ -134,7 +248,107 @@ export default function MintPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [currentAccount, mintAmount]);
+
+  const handleAddPrizePool = useCallback(async () => {
+    if (!currentAccount) return;
+
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(false);
+
+      const tx = new TransactionBlock();
+
+      // Instead of storing the split coin result, pass it directly
+      tx.moveCall({
+        target: `${CONFIG.PACKAGE_ID}::nft::add_prize_pool`,
+        arguments: [
+          tx.object(
+            "0x4c7321a4884673c195ad2b564922b212592e4e903ede5db12264303a1681f47d"
+          ),
+          tx.object(CONFIG.COLLECTION_DATA_ID),
+          tx.gas, // Use tx.gas directly like in the working version
+          tx.pure('20000000000'),
+        ],
+      });
+
+      tx.setGasBudget(200000000);
+
+      const response = await signAndExecuteTransactionBlock({
+        transactionBlock: tx as any,
+        options: {
+          showEffects: true,
+          showEvents: true,
+        },
+      });
+
+      console.log("Mint successful:", response);
+
+      if (response.effects.status.status !== "failure") {
+        setSuccess(true);
+        setError(null);
+      } else {
+        setError("Mint failed");
+        setSuccess(false);
+      }
+    } catch (err) {
+      console.error("Mint failed:", err);
+      setError(err instanceof Error ? err.message : "Mint failed");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentAccount, mintAmount]);
+
+  const handleWithdraw = useCallback(async () => {
+    if (!currentAccount) return;
+
+    try {
+      setLoading(true);
+      setError(null);
+      setSuccess(false);
+
+      const tx = new TransactionBlock();
+
+      // Instead of storing the split coin result, pass it directly
+      tx.moveCall({
+        target: `${CONFIG.PACKAGE_ID}::nft::withdraw_sui`,
+        arguments: [
+          tx.object(
+            "0xa38f626c6d954c7716b9e6de4e4f71d6bbac32d7077461b1cde677485c397fb7"
+          ),
+          tx.pure('1000000000'),
+        ],
+      });
+
+      tx.setGasBudget(200000000);
+
+      const response = await signAndExecuteTransactionBlock({
+        transactionBlock: tx as any,
+        options: {
+          showEffects: true,
+          showEvents: true,
+        },
+      });
+
+      console.log("Mint successful:", response);
+
+      if (response.effects.status.status !== "failure") {
+        setSuccess(true);
+        setError(null);
+      } else {
+        setError("Mint failed");
+        setSuccess(false);
+      }
+    } catch (err) {
+      console.error("Mint failed:", err);
+      setError(err instanceof Error ? err.message : "Mint failed");
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentAccount, mintAmount]);
 
   return (
     <section
@@ -158,26 +372,31 @@ export default function MintPage() {
           <div className="space-y-4 tracking-tight">
             <div className="space-y-2.5">
               {Object.entries(MINT_DATA.schedule).map(
-                ([key, { mint, price, wallet }]) => (
-                  <div
-                    key={key}
-                    className={`flex flex-col gap-0.5 xl:gap-0 items-center border-2 border-custom-primary rounded-md px-3 py-2 sm:py-3 bg-custom-primary/10 duration-300 hover:scale-[0.97] ${
-                      key == "1" ? "" : "opacity-40"
-                    }`}
-                  >
-                    <h3 className="text-xl font-semibold xl:text-lg text-custom-primary">
-                      Phase {key} - {mint}
-                    </h3>
+                ([key, { mint, price, wallet, startDate }]) => {
+                  const currentTime = Date.now();
+                  console.log(currentTime);
+                  const isActive = startDate < currentTime;
 
-                    <div className="flex flex-col items-center -space-y-1 text-base xl:text-sm xl:space-y-0">
-                      <p>{price}</p>
-                      <p>{wallet}</p>
+                  return (
+                    <div
+                      key={key}
+                      className={`flex flex-col gap-0.5 xl:gap-0 items-center border-2 border-custom-primary rounded-md px-3 py-2 sm:py-3 bg-custom-primary/10 duration-300 hover:scale-[0.97] ${
+                        isActive ? "" : "opacity-40"
+                      }`}
+                    >
+                      <h3 className="text-xl font-semibold xl:text-lg text-custom-primary">
+                        Phase {key} - {mint}
+                      </h3>
+
+                      <div className="flex flex-col items-center -space-y-1 text-base xl:text-sm xl:space-y-0">
+                        <p>{price}</p>
+                        <p>{wallet}</p>
+                      </div>
                     </div>
-                  </div>
-                )
+                  );
+                }
               )}
             </div>
-
             <p className="text-base xl:text-sm text-center !leading-[1.2]">
               {MINT_DATA.text}
             </p>
@@ -185,7 +404,8 @@ export default function MintPage() {
 
           <button
             className={cn(buttonStyles, "disabled:opacity-50 col-span-3", "")}
-            disabled={true}
+            disabled={false}
+            onClick={handleWithdraw}
           >
             Withdraw SUI
           </button>
@@ -236,39 +456,67 @@ export default function MintPage() {
                 </button>
               </div>
 
-              {isConnected && whitelist.includes(currentAccount?.address) ? (
-                <div
-                  className={cn("flex flex-col items-center justify-center")}
-                >
-                  <button
-                    onClick={handleMint}
-                    className={cn(buttonStyles, "disabled:opacity-50 ", "")}
-                  >
-                    Eligible for whitelisted phases
-                  </button>
-                  <StyledConnectButton />
-                </div>
-              ) : isConnected &&
-                !whitelist.includes(currentAccount?.address) ? (
+              {isConnected && whitelist.includes(currentAccount?.address) && (
                 <div
                   className={cn("flex flex-col items-center justify-center")}
                 >
                   <button
                     onClick={() => {}}
-                    disabled={false}
+                    className={cn(buttonStyles, "disabled:opacity-50 ", "")}
+                  >
+                    Eligible for whitelisted phases
+                  </button>
+                  <button
+                    onClick={handleMint}
+                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
+                  >
+                    Mint
+                  </button>
+                  <button
+                    onClick={handleMintWhitelist}
+                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
+                  >
+                    Mint WL
+                  </button>
+                  <button
+                    onClick={handleVip}
+                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
+                  >
+                    Mint VIP
+                  </button>
+                  <button
+                    onClick={handleAddPrizePool}
+                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
+                  >
+                    Add Prize Pool
+                  </button>
+                </div>
+              )}
+
+              {isConnected && !whitelist.includes(currentAccount?.address) && (
+                <div
+                  className={cn("flex flex-col items-center justify-center")}
+                >
+                  <button
+                    onClick={() => {}}
                     className={cn(
                       buttonStyles,
-                      "disabled:opacity-50 col-span-3 bg-red-600 hover:bg-red-600",
+                      "disabled:opacity-50 bg-red-400",
                       ""
                     )}
                   >
                     Not eligible for whitelisted phases
                   </button>
-                  <StyledConnectButton />
+                  <button
+                    onClick={handleMint}
+                    disabled
+                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
+                  >
+                    Mint
+                  </button>
                 </div>
-              ) : (
-                <StyledConnectButton />
               )}
+              <StyledConnectButton />
             </div>
             {/* <div className="text-sm text-center text-gray-600">Total Cost: {((Number(CONFIG.MINT_PRICE) * mintAmount) / 1_000_000_000).toFixed(1)} SUI</div> */}
           </div>
