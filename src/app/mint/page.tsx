@@ -485,8 +485,7 @@ export default function MintPage() {
                     Eligible for whitelisted phases
                   </button>
                   <button
-                    onClick={() => {}}
-                    disabled
+                    onClick={handleMintWhitelist}
                     className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
                   >
                     Mint
