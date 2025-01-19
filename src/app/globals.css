@@ -11,3 +11,16 @@
 .faq-link {
   @apply text-custom-primary/70 border-b-2 border-custom-primary/70 hover:text-custom-primary duration-200;
 }
+
+/* Scrollbar of mint-modal */
+#mint-modal::-webkit-scrollbar {
+  @apply w-2;
+}
+
+#mint-modal::-webkit-scrollbar-track {
+  @apply bg-transparent w-5;
+}
+
+#mint-modal::-webkit-scrollbar-thumb {
+  @apply bg-neutral-900/60 rounded-xl;
+}

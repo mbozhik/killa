@@ -1,6 +1,7 @@
 "use client";
 
 import { CONFIG } from "@/lib/config";
+import { mockNftData } from "@/lib/mockNftData";
 
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
@@ -8,6 +9,8 @@ import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 
 import Image from "next/image";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import NftCard from "@/components/NftCard";
 
 import miniLogo from "%%/mini-logo.svg";
 import charactersAnimation from "%%/loader.gif";
@@ -50,7 +53,7 @@ const StyledConnectButton = () => (
   <div
     className={cn(
       "col-span-3  w-full items-center flex justify-end mt-2",
-      "[&>button]:text-lg  [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300"
+      "[&>button]:text-lg [&>button]:!text-white [&>button]:font-medium [&>button]:bg-custom-primary [&>button]:w-full [&>button]:py-4 [&>button]:rounded-lg [&>button]:hover:bg-custom-primary/80 [&>button]:duration-300"
     )}
   >
     <ConnectButton />
@@ -420,13 +423,23 @@ export default function MintPage() {
             </p>
           </div>
 
-          <button
-            className={cn(buttonStyles, "disabled:opacity-50 col-span-3", "")}
-            disabled={true}
-            onClick={handleWithdraw}
-          >
-            Withdraw SUI
-          </button>
+          <Dialog>
+            <DialogTrigger>
+              <div className={cn(buttonStyles, '')}>Withdraw SUI</div>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Withdraw SUI (?)</DialogTitle>
+                {/* <DialogDescription>Description</DialogDescription> */}
+              </DialogHeader>
+
+              <div className="grid grid-cols-3 gap-x-2 gap-y-3 w-full">
+                {mockNftData.map((nft) => (
+                  <NftCard key={nft.id} image={nft.image} name={nft.name} balance={nft.balance} />
+                ))}
+              </div>
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="flex flex-col justify-between w-full h-full gap-5">
