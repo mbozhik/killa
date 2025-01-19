@@ -1,6 +1,6 @@
 export const CONFIG = {
-  PACKAGE_ID: '0x0d41834d474b4bcf57c47c0577caab9d4dc6f86dde8641540466120c9b977659', // Current Testnet SC Package Object ID
-  COLLECTION_DATA_ID: '0xcb7b4304e3425c4c96713cdbcfa4e222409e6fbc0b072856ff23ab6d58aec2ea', // Corresponding CD Object ID
+  PACKAGE_ID: '0xc4f793bda2ce1db8a0626b5d3e189680bf7b17559bfe8389cd9db10d4e4d61dc', // Current Testnet SC Package Object ID
+  COLLECTION_DATA_ID: '0x5e9ddeb7a3a7d9da83b681bfbe003dcd3ee3b99ea0c72310ffdc6894f826c14b', // Corresponding CD Object ID
   CLOCK_ID: '0x6',
   PUBLIC_MINT_PRICE: BigInt(18_000_000_000), // 0.1 SUI
   WHITELIST_MINT_PRICE: BigInt(14_000_000_000), // 0.1 SUI
