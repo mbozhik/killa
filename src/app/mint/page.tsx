@@ -66,7 +66,7 @@ export default function MintPage() {
   const { currentAccount, signAndExecuteTransactionBlock, isConnected } =
     useWalletKit();
 
-  const client = new SuiClient({ url: getFullnodeUrl("devnet") });
+  const client = new SuiClient({ url: getFullnodeUrl("mainnet") });
 
   const customHeight = "h-[100svh] h-[100vh] sm:h-auto";
   const customPaddingBottom = "sm:!mb-[10svh] sm:mb-[10vh]";
@@ -287,7 +287,7 @@ export default function MintPage() {
           ),
           tx.object(CONFIG.COLLECTION_DATA_ID),
           tx.gas, // Use tx.gas directly like in the working version
-          tx.pure("20000000000"),
+          tx.pure("5000000000"),
         ],
       });
 
@@ -422,7 +422,7 @@ export default function MintPage() {
 
           <button
             className={cn(buttonStyles, "disabled:opacity-50 col-span-3", "")}
-            disabled={false}
+            disabled={true}
             onClick={handleWithdraw}
           >
             Withdraw SUI
@@ -485,28 +485,10 @@ export default function MintPage() {
                     Eligible for whitelisted phases
                   </button>
                   <button
-                    onClick={handleMint}
-                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
-                  >
-                    Mint
-                  </button>
-                  <button
-                    onClick={handleMintWhitelist}
-                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
-                  >
-                    Mint WL
-                  </button>
-                  <button
                     onClick={handleVip}
                     className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
                   >
-                    Mint VIP
-                  </button>
-                  <button
-                    onClick={handleAddPrizePool}
-                    className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
-                  >
-                    Add Prize Pool
+                    Mint
                   </button>
                 </div>
               )}
@@ -526,7 +508,7 @@ export default function MintPage() {
                     Not eligible for whitelisted phases
                   </button>
                   <button
-                    onClick={handleMint}
+                    onClick={() => {}}
                     disabled
                     className={cn(buttonStyles, "disabled:opacity-50 mt-2", "")}
                   >
