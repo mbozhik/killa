@@ -99,7 +99,7 @@ export default function MintPage() {
 
       // Instead of storing the split coin result, pass it directly
       tx.moveCall({
-        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
+        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple_whitelist`,
         arguments: [
           tx.gas, // Use tx.gas directly like in the working version
           tx.object(CONFIG.COLLECTION_DATA_ID),
