@@ -196,7 +196,7 @@ export default function MintPage() {
                 {/* <DialogDescription>Description</DialogDescription> */}
               </DialogHeader>
 
-              <div className="grid grid-cols-4 gap-x-2 gap-y-3 w-full">
+              <div className="grid grid-cols-3 gap-x-2 gap-y-3 w-full">
                 {mockNftData.map((nft) => (
                   <NftCard key={nft.id} image={nft.image} name={nft.name} balance={nft.balance} />
                 ))}
