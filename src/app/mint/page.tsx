@@ -1,7 +1,6 @@
 "use client";
 
 import { CONFIG } from "@/lib/config";
-import { mockNftData } from "@/lib/mockNftData";
 
 import { cn } from "@/lib/utils";
 import { useCallback, useEffect, useState } from "react";
@@ -9,7 +8,13 @@ import { ConnectButton, useWalletKit } from "@mysten/wallet-kit";
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 
 import Image from "next/image";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import NftCard from "@/components/NftCard";
 
 import miniLogo from "%%/mini-logo.svg";
@@ -60,12 +65,25 @@ const StyledConnectButton = () => (
   </div>
 );
 
+interface IMintNftData {
+  id: {
+    id: string;
+  }; // Unique identifier for the NFT object
+  name: string; // Name of the NFT
+  description: string; // Description of the NFT
+  image_url: string; // URL to the image of the NFT
+  metadata_uri: string; // URL to the metadata JSON file
+  sui_balance: string; // SUI balance associated with this NFT (if applicable)
+  token_id: string; // Token ID of the NFT
+}
+
 export default function MintPage() {
   const [mintAmount, setMintAmount] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState(false);
   const [mintedTokens, setMintedTokens] = useState(0);
+  const [mintNftData, setMintNftData] = useState<IMintNftData[]>([]);
   const { currentAccount, signAndExecuteTransactionBlock, isConnected } =
     useWalletKit();
 
@@ -94,182 +112,6 @@ export default function MintPage() {
 
     return () => clearInterval(interval); // Limpa o intervalo na desmontagem
   }, []);
-
-  const handleMint = useCallback(async () => {
-    if (!currentAccount) return;
-
-    try {
-      setLoading(true);
-      setError(null);
-      setSuccess(false);
-
-      const tx = new TransactionBlock();
-
-      tx.moveCall({
-        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple`,
-        arguments: [
-          tx.gas, // Use tx.gas directly like in the working version
-          tx.object(CONFIG.COLLECTION_DATA_ID),
-          tx.pure(mintAmount),
-          tx.object(CONFIG.CLOCK_ID),
-        ],
-      });
-
-      tx.setGasBudget(200000000);
-
-      const response = await signAndExecuteTransactionBlock({
-        transactionBlock: tx as any,
-        options: {
-          showEffects: true,
-          showEvents: true,
-        },
-      });
-
-      console.log("Mint successful:", response);
-
-
-      await Promise.all([new Promise(resolve => setTimeout(resolve, 2000))]);
-
-      const confirmed = await client.getTransactionBlock({
-        digest: response.digest,
-        options: {
-          showEffects: true,
-        },
-      });
-
-
-      if (confirmed.effects.status.status !== "failure") {
-        setSuccess(true);
-        setError(null);
-      } else {
-        setError("Mint failed");
-        setSuccess(false);
-      }
-    } catch (err) {
-      console.error("Mint failed:", err);
-      setError(err instanceof Error ? err.message : "Mint failed");
-      setSuccess(false);
-    } finally {
-      setLoading(false);
-    }
-  }, [currentAccount, mintAmount]);
-
-  const handleVip = useCallback(async () => {
-    if (!currentAccount) return;
-
-    if (!vip.includes(currentAccount.address)) {
-      setError("Not eligible for vip phases");
-      setSuccess(false);
-      return;
-    }
-
-    try {
-      setLoading(true);
-      setError(null);
-      setSuccess(false);
-
-      const tx = new TransactionBlock();
-
-      // Instead of storing the split coin result, pass it directly
-      tx.moveCall({
-        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple_vip`,
-        arguments: [
-          tx.gas, // Use tx.gas directly like in the working version
-          tx.object(CONFIG.COLLECTION_DATA_ID),
-          tx.pure(mintAmount),
-          tx.object(CONFIG.CLOCK_ID),
-        ],
-      });
-
-      tx.setGasBudget(200000000);
-
-      const response = await signAndExecuteTransactionBlock({
-        transactionBlock: tx as any,
-        options: {
-          showEffects: true,
-          showEvents: true,
-        },
-      });
-
-      await Promise.all([new Promise(resolve => setTimeout(resolve, 2000))]);
-
-      const confirmed = await client.getTransactionBlock({
-        digest: response.digest,
-        options: {
-          showEffects: true,
-        },
-      });
-
-      if (confirmed.effects.status.status !== "failure") {
-        setSuccess(true);
-        setError(null);
-      } else {
-        setError("Mint failed");
-        setSuccess(false);
-      }
-    } catch (err) {
-      console.error("Mint failed:", err);
-      setError(err instanceof Error ? err.message : "Mint failed");
-      setSuccess(false);
-    } finally {
-      setLoading(false);
-    }
-  }, [currentAccount, mintAmount]);
-
-  const handleMintWhitelist = useCallback(async () => {
-    if (!currentAccount) return;
-
-    if (!wl.includes(currentAccount.address)) {
-      setError("Not eligible for whitelisted phases");
-      setSuccess(false);
-      return;
-    }
-
-    try {
-      setLoading(true);
-      setError(null);
-      setSuccess(false);
-
-      const tx = new TransactionBlock();
-
-      // Instead of storing the split coin result, pass it directly
-      tx.moveCall({
-        target: `${CONFIG.PACKAGE_ID}::nft::mint_multiple_whitelist`,
-        arguments: [
-          tx.gas, // Use tx.gas directly like in the working version
-          tx.object(CONFIG.COLLECTION_DATA_ID),
-          tx.pure(mintAmount),
-          tx.object(CONFIG.CLOCK_ID),
-        ],
-      });
-
-      tx.setGasBudget(200000000);
-
-      const response = await signAndExecuteTransactionBlock({
-        transactionBlock: tx as any,
-        options: {
-          showEffects: true,
-          showEvents: true,
-        },
-      });
-
-      console.log("Mint successful:", response);
-
-      if (response.effects.status.status !== "failure") {
-        setSuccess(true);
-        setError(null);
-      } else {
-        setError("Mint failed");
-        setSuccess(false);
-      }
-    } catch (err) {
-      console.error("Mint failed:", err);
-      setError(err instanceof Error ? err.message : "Mint failed");
-      setSuccess(false);
-    } finally {
-      setLoading(false);
-    }
-  }, [currentAccount, mintAmount]);
 
   const handleAddPrizePool = useCallback(async () => {
     if (!currentAccount) return;
@@ -371,6 +213,53 @@ export default function MintPage() {
     }
   }, [currentAccount, mintAmount]);
 
+  const fetchNfts = useCallback(async () => {
+    if (!currentAccount) {
+      setError("Please enter a valid wallet address.");
+      return;
+    }
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const objects = await client.getOwnedObjects({
+        // owner: currentAccount.address,
+        owner:
+          "0x45e9c49a3011a40fc20e413d5fe11339420e7ca9e6da426371d579caf5aaa022",
+        filter: {
+          MoveModule: {
+            module: "nft",
+            package:
+              "0xc4f793bda2ce1db8a0626b5d3e189680bf7b17559bfe8389cd9db10d4e4d61dc",
+          },
+        },
+      });
+      const ids = objects.data.map((object) => object.data.objectId);
+
+      const details: any = await client.multiGetObjects({
+        ids,
+        options: {
+          showContent: true,
+        },
+      });
+
+      const fields = details.map((item) => item.data.content.fields);
+
+      setMintNftData(fields);
+    } catch (err) {
+      console.error("Error fetching NFTs:", err);
+    } finally {
+      setLoading(false);
+    }
+  }, [currentAccount]);
+
+  useEffect(() => {
+    if (currentAccount) {
+      fetchNfts();
+    }
+  }, [currentAccount, fetchNfts]);
+
   return (
     <section
       className={`grid justify-end items-center w-[85vw] xl:w-[90vw] sm:w-screen mx-auto sm:p-5 ${customPaddingBottom} ${customHeight}`}
@@ -395,7 +284,6 @@ export default function MintPage() {
               {Object.entries(MINT_DATA.schedule).map(
                 ([key, { mint, price, wallet, startDate }]) => {
                   const currentTime = Date.now();
-                  console.log(currentTime);
                   const isActive = startDate < currentTime;
 
                   return (
@@ -425,18 +313,39 @@ export default function MintPage() {
 
           <Dialog>
             <DialogTrigger>
-              <div className={cn(buttonStyles, '')}>Withdraw SUI</div>
+              <div className={cn(buttonStyles, "")}>Withdraw SUI</div>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
                 <DialogTitle>Withdraw SUI (?)</DialogTitle>
-                {/* <DialogDescription>Description</DialogDescription> */}
+                {error && (
+                  <div className="p-3 text-sm text-red-600 bg-red-100 rounded-md">
+                    {error}
+                  </div>
+                )}
+
+                {success && (
+                  <div className="p-3 text-sm text-green-600 bg-green-100 rounded-md">
+                    Successfully withdraw!
+                  </div>
+                )}
               </DialogHeader>
 
               <div className="grid grid-cols-3 gap-x-2 gap-y-3 w-full">
-                {mockNftData.map((nft) => (
-                  <NftCard key={nft.id} image={nft.image} name={nft.name} balance={nft.balance} />
-                ))}
+                {mintNftData.length > 0 &&
+                  mintNftData.map((nft) => (
+                    <NftCard
+                      key={nft.id.id}
+                      id={nft.id.id}
+                      sui_balance={nft.sui_balance}
+                      image={nft.image_url}
+                      name={nft.name}
+                      balance={nft.sui_balance}
+                      setError={setError}
+                      setLoading={setLoading}
+                      setSuccess={setSuccess}
+                    />
+                  ))}
               </div>
             </DialogContent>
           </Dialog>
@@ -462,7 +371,9 @@ export default function MintPage() {
           )}
 
           <div className="space-y-2">
-            <p className="text-lg xl:text-base">{mintedTokens <= 2222 && mintedTokens} / 2222 minted</p>
+            <p className="text-lg xl:text-base">
+              {mintedTokens <= 2222 && mintedTokens} / 2222 minted
+            </p>
             {/* make it dynamic */}
             <div className="grid grid-cols-1  gap-2 sm:flex sm:flex-col sm:gap-3">
               <div className="col-span-2 px-2.5 flex items-center justify-between border-2 border-custom-primary rounded-md">
