@@ -224,9 +224,7 @@ export default function MintPage() {
 
     try {
       const objects = await client.getOwnedObjects({
-        // owner: currentAccount.address,
-        owner:
-          "0x45e9c49a3011a40fc20e413d5fe11339420e7ca9e6da426371d579caf5aaa022",
+        owner: currentAccount.address,
         filter: {
           MoveModule: {
             module: "nft",
