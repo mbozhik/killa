@@ -51,7 +51,7 @@ const MINT_DATA = {
       startDate: 1737345600000,
     },
   },
-  text: "Phases will run for a maximum of 4 hours, or until sold out, whichever comes first. If the Withdraw SUI button turns on, this means you have won some SUI alongside your Killa. Press Withdraw SUI to initiate the claim.",
+  text: "Click the Withdraw SUI button to bring up your Killa Club collection. If your Killa holds a balance of SUI - congratulations, you won the token-bound mint! Click withdraw to claim your SUI.",
 };
 
 const StyledConnectButton = () => (
@@ -370,7 +370,7 @@ export default function MintPage() {
 
           <div className="space-y-2">
             <p className="text-lg xl:text-base">
-              {mintedTokens <= 2222 && mintedTokens} / 2222 minted
+              {mintedTokens <= 2222 && mintedTokens} / 2222{"  "}
             </p>
             {/* make it dynamic */}
             <div className="grid grid-cols-1  gap-2 sm:flex sm:flex-col sm:gap-3">
@@ -400,11 +400,16 @@ export default function MintPage() {
                 <div
                   className={cn("flex flex-col items-center justify-center")}
                 >
+
                   <button
-                    // onClick={handleMintWhitelist}
-                    className={cn(buttonStyles, "disabled:opacity-50 ", "")}
+                    onClick={() => {}}
+                    className={cn(
+                      buttonStyles,
+                      "disabled:opacity-50 bg-red-400 w-80",
+                      ""
+                    )}
                   >
-                    Eligible for whitelisted phases
+                    SOLD OUT
                   </button>
                   <button
                     onClick={() => {}}
