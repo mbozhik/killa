@@ -218,32 +218,64 @@ export default function MintPage() {
       setError("Please enter a valid wallet address.");
       return;
     }
-
+  
     setLoading(true);
     setError(null);
-
+  
     try {
-      const objects = await client.getOwnedObjects({
-        owner: currentAccount.address,
-        filter: {
-          MoveModule: {
-            module: "nft",
-            package:
-              "0xc4f793bda2ce1db8a0626b5d3e189680bf7b17559bfe8389cd9db10d4e4d61dc",
+      let allObjects: any[] = [];
+      let cursor: string | null = null;
+      let firstCall = true;
+      let hasNextPage = true;
+  
+      // Paginação para buscar todos os NFTs da carteira
+      do {
+        const params: any = {
+          owner: currentAccount.address,
+          limit: 50,
+          filter: {
+            MoveModule: {
+              module: "nft",
+              package:
+                "0xc4f793bda2ce1db8a0626b5d3e189680bf7b17559bfe8389cd9db10d4e4d61dc",
+            },
           },
-        },
-      });
-      const ids = objects.data.map((object) => object.data.objectId);
+        };
+  
+        if (!firstCall) {
+          params.cursor = cursor;
+        }
+  
+        const response = await client.getOwnedObjects(params);
+  
+        allObjects = [...allObjects, ...response.data];
+        cursor = response.nextCursor;
+        firstCall = false;
+        hasNextPage = response.hasNextPage;
+      } while (hasNextPage);
+  
+      const ids = allObjects.map((object) => object.data.objectId);
+  
+      // Função para buscar detalhes em lotes de 50
+      const batchSize = 50;
+      let allDetails: any[] = [];
 
-      const details: any = await client.multiGetObjects({
-        ids,
-        options: {
-          showContent: true,
-        },
-      });
-
-      const fields = details.map((item) => item.data.content.fields);
-
+      console.log(ids)
+  
+      for (let i = 0; i < ids.length; i += batchSize) {
+        const batchIds = ids.slice(i, i + batchSize);
+        const detailsBatch = await client.multiGetObjects({
+          ids: batchIds,
+          options: {
+            showContent: true,
+          },
+        });
+  
+        allDetails = [...allDetails, ...detailsBatch];
+      }
+  
+      const fields = allDetails.map((item) => item.data.content.fields);
+  
       setMintNftData(fields);
     } catch (err) {
       console.error("Error fetching NFTs:", err);
